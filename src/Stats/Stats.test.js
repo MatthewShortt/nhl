@@ -1,7 +1,7 @@
-import {CreateUser} from './CreateUser';
+import {Stats} from './Stats';
 
 describe('Container: User', () => {
-    it('should render CreateUser correctly', () => {       
+    it('should render Stats correctly', () => {
         const props = {
             user: {
                 name: 'Mock User'
@@ -9,6 +9,6 @@ describe('Container: User', () => {
             error: null,
             goToMeetings: jest.fn()
         }
-        expect(CreateUser(props)).toMatchSnapshot();
+        expect(Stats(props)).toMatchSnapshot();
     });
 });

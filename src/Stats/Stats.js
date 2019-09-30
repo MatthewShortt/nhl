@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import {GetSkaters} from '../Actions/UserActions';
+import {GetSkaters} from './StatsActions';
 
-export function CreateUser({skaters, getSkaters}) {
+export function Stats({skaters, getSkaters}) {
 
     useEffect(
         () => {
@@ -84,4 +84,4 @@ const mapDispatchToProps = dispatch => ({
     getSkaters: () => dispatch(GetSkaters()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateUser)
+export default connect(mapStateToProps, mapDispatchToProps)(Stats)

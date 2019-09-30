@@ -4,7 +4,7 @@ import createRootReducer from './RootReducer';
 import {routerMiddleware} from "connected-react-router";
 import createSagaMiddleware from 'redux-saga';
 import {all} from 'redux-saga/effects';
-import {watchSkatersAsync} from './User/Actions/UserActions';
+import {watchSkatersAsync} from './Stats/StatsActions';
 
 const sagaMiddleware = createSagaMiddleware();
 

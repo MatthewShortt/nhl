@@ -1,4 +1,4 @@
-import {UserAPI} from '../API/User.api';
+import {StatsApi} from './Stats.api';
 import {call, put, takeLatest} from 'redux-saga/effects';
 
 export const SKATERS_GET_REQUESTED = 'SKATERS_GET_REQUESTED';
@@ -17,17 +17,17 @@ export function GetSkaters() {
 
 export function* getSkatersAsync() {
     try {
-        const skaters = yield call(UserAPI.all);
+        const skaters = yield call(StatsApi.all);
         yield put(SkatersSuccess(skaters));
     } catch (e) {
         yield put(SkatersError(e));
     }
 }
 
-function SkatersSuccess(user) {
+function SkatersSuccess(stats) {
     return {
         type: SKATERS_SUCCESS,
-        payload: {user}
+        payload: {stats}
     };
 }
 

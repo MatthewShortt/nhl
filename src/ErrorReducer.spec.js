@@ -1,5 +1,5 @@
 import ErrorReducer from './ErrorReducer';
-import {SKATERS_ERROR} from './User/Actions/UserActions';
+import {SKATERS_ERROR} from './Stats/StatsActions';
 
 describe('Error Reducer ', () => {
 

@@ -1,4 +1,4 @@
-import { SKATERS_ERROR } from './User/Actions/UserActions';
+import { SKATERS_ERROR } from './Stats/StatsActions';
 import uikit from "uikit";
 
 const errorActions = [

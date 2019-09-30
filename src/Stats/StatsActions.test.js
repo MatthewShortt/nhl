@@ -7,8 +7,8 @@ import {
     USER_POST_REQUESTED,
     SKATERS_SUCCESS,
     watchSkatersAsync
-} from "./UserActions";
-import {UserAPI} from "../API/User.api";
+} from "./StatsActions";
+import {StatsApi} from "./Stats.api";
 import {call, put, select, takeLatest} from 'redux-saga/effects';
 import {viewMeetings} from '../../Navigation/route-actions';
 import {LocationState} from "../../Common/selectors";
@@ -25,7 +25,7 @@ describe('Test action creators', () => {
         });
 
         it('should dispatch view meetings action when location state undefined', () => {
-            expect(fixture.next().value).toEqual(call(UserAPI.create, { name: 'Fred' }));
+            expect(fixture.next().value).toEqual(call(StatsApi.create, { name: 'Fred' }));
             expect(fixture.next('Fred').value).toEqual(put({
                 type: SKATERS_SUCCESS,
                 payload: {
@@ -40,7 +40,7 @@ describe('Test action creators', () => {
         it('should dispatch push to next path when state is defined', () => {
             const locationState = {nextPathname: '/nextpath/'};
 
-            expect(fixture.next().value).toEqual(call(UserAPI.create, { name: 'Fred' }));
+            expect(fixture.next().value).toEqual(call(StatsApi.create, { name: 'Fred' }));
             expect(fixture.next('Fred').value).toEqual(put({
                 type: SKATERS_SUCCESS,
                 payload: {
@@ -73,7 +73,7 @@ describe('Test action creators', () => {
         });
 
         it('should dispatch action', () => {
-            expect(fixture.next().value).toEqual(call(UserAPI.byId, userId));
+            expect(fixture.next().value).toEqual(call(StatsApi.byId, userId));
             expect(fixture.next('Fred').value).toEqual(put({
                 type: SKATERS_SUCCESS,
                 payload: {
