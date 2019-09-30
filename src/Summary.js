@@ -1,4 +1,3 @@
-import britishOpen from './resources/Logo_of_The_Open_Championship.png';
 import React from 'react';
 
 export function Summary() {
@@ -169,9 +168,7 @@ export function Summary() {
     return (
         <div className="uk-height-viewport uk-background-default uk-margin-medium-bottom">
             <div className="uk-container uk-text-center@m">
-                <h1 className="uk-heading-divider uk-margin-top">PGA Pool</h1>
-                <img src={britishOpen} width="100px" height="100px" alt="The British Open Logo"
-                     className="uk-position-small uk-position-top-right"/>
+                <h1 className="uk-heading-divider uk-margin-top">NHL Fantasy Table</h1>
                 <div className="uk-align-center uk-width-1-1@m">
                     <div className="uk-text-center" data-uk-grid>
                         {people.map((person, i) =>

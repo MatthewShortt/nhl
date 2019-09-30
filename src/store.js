@@ -4,6 +4,7 @@ import createRootReducer from './RootReducer';
 import {routerMiddleware} from "connected-react-router";
 import createSagaMiddleware from 'redux-saga';
 import {all} from 'redux-saga/effects';
+import {watchSkatersAsync} from './User/Actions/UserActions';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -12,7 +13,9 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const history = createHashHistory();
 
 function* rootSaga() {
-    yield all([]);
+    yield all([
+        watchSkatersAsync()
+    ]);
 }
 
 export default function store() {
