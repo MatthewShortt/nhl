@@ -11,6 +11,9 @@ export function Stats({skaters, getSkaters}) {
         [getSkaters]
     );
 
+    const tableHeaders = ['Name', 'Team', 'Pos', 'Tot', 'G', 'A', 'PPG', 'PPA', 'SHG', 'SHA', '+/-', 'S', 'H', 'B'];
+    const tableRows    = ['playerName', 'team', 'position', 'total', 'goals', 'assists', 'ppGoals', 'ppAssists', 'shGoals', 'shAssists', 'plusMinus', 'shots', 'hits', 'blockedShots'];
+
     return (
         <div className="uk-height-viewport uk-background-default uk-margin-medium-bottom">
             <button onClick={getSkaters}>Get Player Stats</button>
@@ -18,46 +21,25 @@ export function Stats({skaters, getSkaters}) {
                 <h1 className="uk-heading-divider uk-margin-top">NHL Fantasy Table</h1>
                 <div className="uk-align-center uk-width-1-1@m">
                     <div className="uk-overflow-auto">
-                        <table className="uk-table uk-table-small uk-table-divider uk-table-striped uk-table-hover uk-text-left">
+                        <table
+                            className="uk-table uk-table-small uk-table-divider uk-table-striped uk-table-hover uk-text-left">
                             <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Name</th>
-                                    <th>Team</th>
-                                    <th>Pos</th>
-                                    <th>Tot</th>
-                                    <th>G</th>
-                                    <th>A</th>
-                                    <th>PPG</th>
-                                    <th>PPA</th>
-                                    <th>SHG</th>
-                                    <th>SHA</th>
-                                    <th>+/-</th>
-                                    <th>S</th>
-                                    <th>H</th>
-                                    <th>B</th>
-                                </tr>
+                            <tr>
+                                <th></th>
+                                {tableHeaders.map((header, i) =>
+                                    <th>{header}</th>
+                                )}
+                            </tr>
                             </thead>
                             <tbody>
-                                {skaters.slice(0, 400).map((player, i) =>
-                                    <tr>
-                                        <td>{i+1}</td>
-                                        <td>{player.playerName}</td>
-                                        <td>{player.team}</td>
-                                        <td>{player.position}</td>
-                                        <td>{player.total}</td>
-                                        <td>{player.goals}</td>
-                                        <td>{player.assists}</td>
-                                        <td>{player.ppGoals}</td>
-                                        <td>{player.ppAssists}</td>
-                                        <td>{player.shGoals}</td>
-                                        <td>{player.shAssists}</td>
-                                        <td>{player.plusMinus}</td>
-                                        <td>{player.shots}</td>
-                                        <td>{player.hits}</td>
-                                        <td>{player.blockedShots}</td>
-                                    </tr>
-                                )}
+                            {skaters.slice(0, 100).map((player, i) =>
+                                <tr>
+                                    <td>{i + 1}</td>
+                                    {tableRows.map((row, j) =>
+                                        <td>{player[row]}</td>
+                                    )}
+                                </tr>
+                            )}
                             </tbody>
                         </table>
                     </div>
