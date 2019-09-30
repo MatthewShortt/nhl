@@ -9,15 +9,16 @@ export function* watchSkatersAsync() {
     yield takeLatest(SKATERS_GET_REQUESTED, getSkatersAsync);
 }
 
-export function GetSkaters() {
+export function GetSkaters(params) {
     return {
-        type: SKATERS_GET_REQUESTED
+        type: SKATERS_GET_REQUESTED,
+        payload: params
     }
 }
 
-export function* getSkatersAsync() {
+export function* getSkatersAsync({payload: params}) {
     try {
-        const skaters = yield call(StatsApi.all);
+        const skaters = yield call(StatsApi.all, params);
         yield put(SkatersSuccess(skaters));
     } catch (e) {
         yield put(SkatersError(e));

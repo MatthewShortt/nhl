@@ -6,7 +6,7 @@ export function Stats({skaters, getSkaters}) {
 
     useEffect(
         () => {
-            getSkaters();
+            getSkaters({'type': 'skaters'});
         },
         [getSkaters]
     );
@@ -16,7 +16,9 @@ export function Stats({skaters, getSkaters}) {
 
     return (
         <div className="uk-height-viewport uk-background-default uk-margin-medium-bottom">
-            <button onClick={getSkaters}>Get Player Stats</button>
+            <button onClick={event => {
+                GetStats(event, getSkaters, {'type': 'goalies'})
+            }}>Get Player Stats</button>
             <div className="uk-container uk-text-center@m">
                 <h1 className="uk-heading-divider uk-margin-top">NHL Fantasy Table</h1>
                 <div className="uk-align-center uk-width-1-1@m">
@@ -48,9 +50,9 @@ export function Stats({skaters, getSkaters}) {
         </div>
     );
 
-    function GetAllSkaters(event, getSkaters) {
+    function GetStats(event, getSkaters, params) {
         event.preventDefault();
-        getSkaters();
+        getSkaters(params);
     }
 
 }
@@ -63,7 +65,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = dispatch => ({
-    getSkaters: () => dispatch(GetSkaters()),
+    getSkaters: (params) => dispatch(GetSkaters(params)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Stats)
