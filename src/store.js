@@ -5,7 +5,7 @@ import {routerMiddleware} from "connected-react-router";
 import createSagaMiddleware from 'redux-saga';
 import {all} from 'redux-saga/effects';
 import {watchSkatersAsync} from './Stats/StatsActions';
-import {watchTableHeadersAsync} from './Stats/StatsTableActions';
+import {watchTableConfigAsync} from './Stats/StatsTableActions';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -16,7 +16,7 @@ export const history = createHashHistory();
 function* rootSaga() {
     yield all([
         watchSkatersAsync(),
-        watchTableHeadersAsync()
+        watchTableConfigAsync()
     ]);
 }
 

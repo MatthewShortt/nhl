@@ -1,4 +1,4 @@
-import { TABLE_HEADERS_SUCCESS } from './StatsTableActions';
+import { TABLE_CONFIG_SUCCESS } from './StatsTableActions';
 
 const initialState = {
     headers: ['Name', 'Team', 'Pos', 'Tot', 'G', 'A', 'PPG', 'PPA', 'SHG', 'SHA', '+/-', 'S', 'H', 'B'],
@@ -6,7 +6,7 @@ const initialState = {
 };
 
 export default function StatsTableReducer(state = initialState, action) {
-    if (action.type === TABLE_HEADERS_SUCCESS) {
+    if (action.type === TABLE_CONFIG_SUCCESS) {
         return action.payload.table;
     } else {
         return state;

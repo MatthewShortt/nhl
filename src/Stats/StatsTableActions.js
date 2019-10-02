@@ -1,8 +1,8 @@
 import {put, takeLatest} from 'redux-saga/effects';
 
-export const TABLE_HEADERS_UPDATE_REQUESTED = 'TABLE_HEADERS_UPDATE_REQUESTED';
-export const TABLE_HEADERS_SUCCESS = 'TABLE_HEADERS_SUCCESS';
-export const TABLE_HEADERS_ERROR = 'TABLE_HEADERS_ERROR';
+export const TABLE_CONFIG_UPDATE_REQUESTED = 'TABLE_CONFIG_UPDATE_REQUESTED';
+export const TABLE_CONFIG_SUCCESS = 'TABLE_CONFIG_SUCCESS';
+export const TABLE_CONFIG_ERROR = 'TABLE_CONFIG_ERROR';
 
 const TABLE = {
     skaters: {
@@ -15,18 +15,18 @@ const TABLE = {
     }
 };
 
-export function* watchTableHeadersAsync() {
-    yield takeLatest(TABLE_HEADERS_UPDATE_REQUESTED, updateTableHeadersAsync);
+export function* watchTableConfigAsync() {
+    yield takeLatest(TABLE_CONFIG_UPDATE_REQUESTED, updateTableConfigAsync);
 }
 
-export function UpdateTableHeaders(params) {
+export function UpdateTableConfig(params) {
     return {
-        type: TABLE_HEADERS_UPDATE_REQUESTED,
+        type: TABLE_CONFIG_UPDATE_REQUESTED,
         payload: params
     }
 }
 
-export function* updateTableHeadersAsync({payload: params}) {
+export function* updateTableConfigAsync({payload: params}) {
     try {
         const {type, startYear, endYear} = params;
         if (!type || !startYear || !endYear) throw new Error(`Missing parameters: ${{type: type, startYear: startYear, endYear: endYear}}`);
@@ -38,22 +38,22 @@ export function* updateTableHeadersAsync({payload: params}) {
             table.keys = table.keys.filter(key => {return key !== 'team'});
         }
 
-        yield put(TableHeadersSuccess(table));
+        yield put(TableConfigSuccess(table));
     } catch (e) {
-        yield put(TableHeadersError(e));
+        yield put(TableConfigError(e));
     }
 }
 
-function TableHeadersSuccess(table) {
+function TableConfigSuccess(table) {
     return {
-        type: TABLE_HEADERS_SUCCESS,
+        type: TABLE_CONFIG_SUCCESS,
         payload: {table}
     };
 }
 
-function TableHeadersError(error) {
+function TableConfigError(error) {
     return {
-        type: TABLE_HEADERS_ERROR,
+        type: TABLE_CONFIG_ERROR,
         payload: {error}
     };
 }

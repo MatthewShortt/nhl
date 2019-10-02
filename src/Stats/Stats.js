@@ -1,10 +1,9 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {GetSkaters} from './StatsActions';
-import {UpdateTableHeaders} from './StatsTableActions';
-import tableHeaders from "./StatsTableReducer";
+import {UpdateTableConfig} from './StatsTableActions';
 
-export function Stats({skaters, tableConfig, getSkaters, updateTableHeaders}) {
+export function Stats({skaters, tableConfig, getSkaters, updateTableConfig}) {
 
     useEffect(
         () => {
@@ -87,7 +86,7 @@ export function Stats({skaters, tableConfig, getSkaters, updateTableHeaders}) {
             endYear: event.target.endYear.value
         };
         getSkaters(params);
-        updateTableHeaders(params);
+        updateTableConfig(params);
     }
 
 }
@@ -102,7 +101,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => ({
     getSkaters: (params) => dispatch(GetSkaters(params)),
-    updateTableHeaders: (params) => dispatch(UpdateTableHeaders(params))
+    updateTableConfig: (params) => dispatch(UpdateTableConfig(params))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Stats)
