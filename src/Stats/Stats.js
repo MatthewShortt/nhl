@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {GetSkaters} from './StatsActions';
+import {UpdateTableHeaders} from './StatsTableActions';
+import tableHeaders from "./StatsTableReducer";
 
-export function Stats({skaters, getSkaters}) {
+export function Stats({skaters, tableConfig, getSkaters, updateTableHeaders}) {
 
     useEffect(
         () => {
@@ -11,15 +13,7 @@ export function Stats({skaters, getSkaters}) {
         [getSkaters]
     );
 
-    const tableHeadersSkaters = ['Name', 'Team', 'Pos', 'Tot', 'G', 'A', 'PPG', 'PPA', 'SHG', 'SHA', '+/-', 'S', 'H', 'B'];
-    const tableRowsSkaters    = ['playerName', 'team', 'position', 'total', 'goals', 'assists', 'ppGoals', 'ppAssists', 'shGoals', 'shAssists', 'plusMinus', 'shots', 'hits', 'blockedShots'];
-    const years               = ['2015-2016', '2016-2017', '2017-2018', '2018-2019'];
-
-    const tableHeadersGoalies = ['Name', 'Tot', 'W', 'L', 'GA', 'S', 'SO'];
-    const tableRowsGoalies    = ['playerName', 'total', 'wins', 'losses', 'goalsAgainst', 'saves', 'shutouts'];
-
-    let tableHeaders = tableHeadersSkaters;
-    let tableRows = tableRowsSkaters;
+    const years = ['2015-2016', '2016-2017', '2017-2018', '2018-2019'];
 
     return (
         <div className="uk-height-viewport uk-background-default uk-margin-medium-bottom">
@@ -63,7 +57,7 @@ export function Stats({skaters, getSkaters}) {
                             <thead>
                             <tr>
                                 <th></th>
-                                {tableHeaders.map((header, i) =>
+                                {tableConfig.headers.map((header, i) =>
                                     <th>{header}</th>
                                 )}
                             </tr>
@@ -72,7 +66,7 @@ export function Stats({skaters, getSkaters}) {
                             {skaters.slice(0, 500).map((player, i) =>
                                 <tr>
                                     <td>{i + 1}</td>
-                                    {tableRows.map((row, j) =>
+                                    {tableConfig.keys.map((row, j) =>
                                         <td>{player[row]}</td>
                                     )}
                                 </tr>
@@ -87,20 +81,13 @@ export function Stats({skaters, getSkaters}) {
 
     function GetStats(event, getSkaters) {
         event.preventDefault();
-        if (event.target.type.value === 'skaters') {
-            tableHeaders = tableHeadersSkaters;
-            tableRows = tableRowsSkaters;
-        } else if (event.target.type.value === 'goalies') {
-            tableHeaders = tableHeadersGoalies;
-            tableRows = tableRowsGoalies;
-        }
-        console.log(tableHeaders);
         const params = {
             type: event.target.type.value,
             startYear: event.target.startYear.value,
             endYear: event.target.endYear.value
         };
         getSkaters(params);
+        updateTableHeaders(params);
     }
 
 }
@@ -108,12 +95,14 @@ export function Stats({skaters, getSkaters}) {
 function mapStateToProps(state) {
     return {
         skaters: state.skaters,
+        tableConfig: state.tableConfig,
         error: state.error
     }
 }
 
 const mapDispatchToProps = dispatch => ({
     getSkaters: (params) => dispatch(GetSkaters(params)),
+    updateTableHeaders: (params) => dispatch(UpdateTableHeaders(params))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Stats)

@@ -12,9 +12,7 @@ export const API_URL = 'http://localhost:9000';
 export const getData = async (url, params) => {
     let config = {crossdomain: true};
     config.params = params || {};
-    console.log('This is the config...', config);
     const result = await axios.get(url, config);
-    console.log(result.data);
     return result.data;
 };
 
