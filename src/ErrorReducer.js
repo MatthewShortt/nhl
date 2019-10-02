@@ -1,9 +1,7 @@
-import {SKATERS_ERROR} from './Stats/StatsActions';
 import {TABLE_CONFIG_ERROR} from './Stats/StatsTableActions';
-import uikit from "uikit";
+import uikit from 'uikit';
 
 const errorActions = [
-    SKATERS_ERROR,
     TABLE_CONFIG_ERROR
 ];
 

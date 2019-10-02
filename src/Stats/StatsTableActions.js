@@ -31,8 +31,7 @@ export function* updateTableConfigAsync({payload: params}) {
         const {type, startYear, endYear} = params;
         if (!type || !startYear || !endYear) throw new Error(`Missing parameters: ${{type: type, startYear: startYear, endYear: endYear}}`);
 
-        let table = TABLE[type];
-
+        let table = Object.assign({}, TABLE[type]);
         if (startYear !== endYear) {
             table.headers = table.headers.filter(header => {return header !== 'Team'});
             table.keys = table.keys.filter(key => {return key !== 'team'});

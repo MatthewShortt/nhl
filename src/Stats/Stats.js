@@ -13,6 +13,25 @@ export function Stats({skaters, tableConfig, getSkaters, updateTableConfig}) {
     );
 
     const years = ['2015-2016', '2016-2017', '2017-2018', '2018-2019'];
+    
+    let tableRows;
+    
+    if (skaters.loading) {
+        tableRows = <tr><td className='uk-text-center@s' colspan='100%'> <div data-uk-spinner></div></td></tr>
+    } else if (skaters.error) {
+        tableRows = <tr><td className='uk-text-center@s' colspan='100%'><span className="uk-label uk-label-danger">Error loading stats. Please try again.</span></td></tr>
+    } else {
+        tableRows =
+            skaters.data.slice(0, 500).map((player, i) =>
+                <tr>
+                    <td>{i + 1}</td>
+                    {tableConfig.keys.map((row, j) =>
+                        <td>{player[row]}</td>
+                    )}
+                </tr>
+            )
+    }
+    
 
     return (
         <div className="uk-height-viewport uk-background-default uk-margin-medium-bottom">
@@ -62,14 +81,7 @@ export function Stats({skaters, tableConfig, getSkaters, updateTableConfig}) {
                             </tr>
                             </thead>
                             <tbody>
-                            {skaters.slice(0, 500).map((player, i) =>
-                                <tr>
-                                    <td>{i + 1}</td>
-                                    {tableConfig.keys.map((row, j) =>
-                                        <td>{player[row]}</td>
-                                    )}
-                                </tr>
-                            )}
+                            {tableRows}
                             </tbody>
                         </table>
                     </div>
