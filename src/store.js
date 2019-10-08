@@ -6,6 +6,8 @@ import createSagaMiddleware from 'redux-saga';
 import {all} from 'redux-saga/effects';
 import {watchSkatersAsync} from './Stats/StatsActions';
 import {watchTableConfigAsync} from './Stats/StatsTableActions';
+import {watchFilterAsync} from './Stats/StatsFilterActions';
+import {watchUpdateYearsAsync} from './Stats/StatsYearsActions';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -16,7 +18,9 @@ export const history = createHashHistory();
 function* rootSaga() {
     yield all([
         watchSkatersAsync(),
-        watchTableConfigAsync()
+        watchTableConfigAsync(),
+        watchFilterAsync(),
+        watchUpdateYearsAsync()
     ]);
 }
 

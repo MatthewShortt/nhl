@@ -1,4 +1,4 @@
-import { TABLE_CONFIG_SUCCESS } from './StatsTableActions';
+import {TABLE_CONFIG_SUCCESS} from './StatsTableActions';
 
 const initialState = {
     headers: ['Name', 'Team', 'Pos', 'Tot', 'G', 'A', 'PPG', 'PPA', 'SHG', 'SHA', '+/-', 'S', 'H', 'B'],
