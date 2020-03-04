@@ -8,6 +8,8 @@ import {watchSkatersAsync} from './Stats/StatsActions';
 import {watchTableConfigAsync} from './Stats/StatsTableActions';
 import {watchFilterAsync} from './Stats/StatsFilterActions';
 import {watchUpdateYearsAsync} from './Stats/StatsYearsActions';
+import {watchUpdateDatesAsync} from './Stats/StatsDatePickerActions';
+import {watchToggleAsync} from './Stats/StatsSearchToggleActions';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -20,7 +22,9 @@ function* rootSaga() {
         watchSkatersAsync(),
         watchTableConfigAsync(),
         watchFilterAsync(),
-        watchUpdateYearsAsync()
+        watchUpdateYearsAsync(),
+        watchUpdateDatesAsync(),
+        watchToggleAsync()
     ]);
 }
 

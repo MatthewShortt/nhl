@@ -1,4 +1,5 @@
 import {put, takeLatest} from 'redux-saga/effects';
+import {RESET_FILTERS} from "./StatsActions";
 
 export const FILTER_REQUESTED = 'FILTER_REQUESTED';
 export const FILTER_SUCCESS = 'FILTER_SUCCESS';
@@ -35,4 +36,10 @@ function FilterError(error) {
         type: FILTER_ERROR,
         payload: {error}
     };
+}
+
+export function ResetFilters() {
+    return {
+        type: RESET_FILTERS
+    }
 }

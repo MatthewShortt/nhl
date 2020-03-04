@@ -6,7 +6,7 @@ const initialState = {
     selectedEndYear: YEARS[YEARS.length - 1]
 };
 
-export default function StatsTableReducer(state = initialState, action) {
+export default function StatsYearsReducer(state = initialState, action) {
     switch (action.type) {
         case UPDATE_YEARS_SUCCESS:
             return action.payload.years;

@@ -1,5 +1,6 @@
 import {StatsApi} from './Stats.api';
 import {call, put, takeLatest} from 'redux-saga/effects';
+import {ResetFilters} from './StatsFilterActions';
 
 export const SKATERS_GET_REQUESTED = 'SKATERS_GET_REQUESTED';
 export const SKATERS_LOADING = 'SKATERS_LOADING';
@@ -57,12 +58,6 @@ function SkatersError(error) {
 function SkatersFilter() {
     return {
         type: SKATERS_FILTER
-    }
-}
-
-function ResetFilters() {
-    return {
-        type: RESET_FILTERS
     }
 }
 

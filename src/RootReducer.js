@@ -4,6 +4,8 @@ import skaters from './Stats/StatsReducer';
 import tableConfig from './Stats/StatsTableReducer';
 import filters from './Stats/StatsFilterReducer';
 import years from './Stats/StatsYearsReducer';
+import dates from './Stats/StatsDatePickerReducer';
+import searchType from './Stats/StatsSearchToggleReducer';
 
 export default (history) =>
     combineReducers({
@@ -11,6 +13,8 @@ export default (history) =>
             skaters,
             tableConfig,
             filters,
-            years
+            years,
+            dates,
+            searchType
         }
     );

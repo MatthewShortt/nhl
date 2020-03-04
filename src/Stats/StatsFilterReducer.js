@@ -9,6 +9,7 @@ const initialState = {
 export default function StatsTableReducer(state = initialState, action) {
     switch (action.type) {
         case FILTER_SUCCESS:
+            if (action.payload.filters.type === 'team') return updateTeamFilters(state, action.payload.filters);
             return updateFilters(state, action.payload.filters);
         case RESET_FILTERS:
             return {position: [], team: []};
@@ -24,5 +25,10 @@ const updateFilters = (state, filters) => {
         return state;
     }
     state[type] = state[type].filter(filter => filter !== value);
+    return state;
+};
+
+const updateTeamFilters = (state, filters) => {
+    state['team'] = filters.value;
     return state;
 };

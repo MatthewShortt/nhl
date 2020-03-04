@@ -28,11 +28,11 @@ export function UpdateTableConfig(params) {
 
 export function* updateTableConfigAsync({payload: params}) {
     try {
-        const {type, startYear, endYear} = params;
-        if (!type || !startYear || !endYear) throw new Error(`Missing parameters: ${{type: type, startYear: startYear, endYear: endYear}}`);
+        const {type, searchType, start, end} = params;
+        if (!type || !start || !end) throw new Error(`Missing parameters: ${{type: type, searchType: searchType, start: start, end: end}}`);
 
         let table = Object.assign({}, TABLE[type]);
-        if (startYear !== endYear) {
+        if ( searchType === 'DATES' || start !== end) {
             table.headers = table.headers.filter(header => {return header !== 'Team'});
             table.keys = table.keys.filter(key => {return key !== 'team'});
         }
