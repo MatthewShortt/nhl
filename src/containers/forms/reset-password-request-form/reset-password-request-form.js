@@ -17,7 +17,6 @@ function ResetPasswordRequestForm() {
                 onSubmit={({ email }) => resetPasswordRequest(dispatch, { email })}
             >
                 {({ errors, touched }) => (
-
                     <Form>
                         <FieldElement logo={'mail'} name={'email'} errors={errors} touched={touched}/>
                         <button type='submit' className='uk-button uk-button-primary uk-align-center uk-margin-small-top'>Request reset</button>
