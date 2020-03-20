@@ -23,7 +23,7 @@ function SignupForm() {
                         <FieldElement logo={'lock'} name={'password'} autoComplete={'new-password'} errors={errors} touched={touched}/>
                         <FieldElement logo={'lock'} name={'confirmPassword'} type={'password'} placeholder={'confirm password'} autoComplete={'new-password'} errors={errors} touched={touched}/>
 
-                        <button type='submit' className='uk-button uk-button-primary uk-align-center uk-margin-small-top'>Submit</button>
+                        <button type='submit' className='uk-button uk-button-primary uk-align-center uk-margin-small-top'>Sign up</button>
                     </Form>
                 )}
             </Formik>

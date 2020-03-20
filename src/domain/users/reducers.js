@@ -1,4 +1,4 @@
-const { persistentReducer } = require('../../util/persistentReducer');
+const { persistentReducer } = require('#state/persistentReducer');
 const { USER_LOGON_SUCCESS, EMAIL_OR_USERNAME_DOES_NOT_EXIST, INCORRECT_PASSWORD, USER_CREATE_SUCCESS } = require('./constants');
 
 const USER_KEY = 'user';

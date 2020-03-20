@@ -22,7 +22,7 @@ function LogonForm() {
                         <FieldElement logo={'user'} name={'emailOrUsername'} type='text' placeholder={'email or username'} autoComplete={'off'} errors={errors} touched={touched}/>
                         <FieldElement logo={'lock'} name={'password'} autoComplete={'new-password'} errors={errors} touched={touched}/>
 
-                        <button type='submit' className='uk-button uk-button-primary uk-align-center uk-margin-small-top'>Submit</button>
+                        <button type='submit' className='uk-button uk-button-primary uk-align-center uk-margin-small-top'>Logon</button>
                     </Form>
                 )}
             </Formik>

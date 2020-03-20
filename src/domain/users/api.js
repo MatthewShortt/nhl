@@ -9,5 +9,8 @@ export const UserApi = {
         email,
         username,
         password
+    }),
+    resetPasswordRequest: async ({ email }) => client.post('/users/resetPasswordRequest', {
+        email
     })
 };

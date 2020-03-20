@@ -1,4 +1,4 @@
-/**
+/*
  * User Logon Constants
  */
 export const USER_LOGON_SUCCESS = 'USER_LOGON_SUCCESS';
@@ -20,8 +20,14 @@ export const USER_LOGON_ERRORS = {
     }
 };
 
-/**
+/*
  * User Create Constants
  */
 export const USER_CREATE_SUCCESS = 'USER_CREATE_SUCCESS';
 export const USER_CREATE_ERROR = 'USER_CREATE_ERROR';
+
+/*
+ * User Reset Password Request Constants
+ */
+export const USER_PASSWORD_RESET_REQUEST_SUCCESS = 'USER_PASSWORD_RESET_REQUEST_SUCCESS';
+export const USER_PASSWORD_RESET_REQUEST_ERROR = 'USER_PASSWORD_RESET_REQUEST_ERROR';

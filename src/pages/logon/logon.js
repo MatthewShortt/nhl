@@ -9,7 +9,7 @@ function LogonLayout() {
                 <div className='uk-width-1-2@m uk-text-center'>
                     <h1 className='color-white'>Welcome to Sports Hounds</h1>
                 </div>
-                <div className='uk-width-1-2@m'>
+                <div className='uk-width-1-2@m min-height-477'>
                     <FormFlipper/>
                 </div>
             </div>

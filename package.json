@@ -9,6 +9,7 @@
     "@material-ui/pickers": "^3.2.10",
     "axios": "^0.19.2",
     "connected-react-router": "^6.5.2",
+    "core-js": "^3.6.4",
     "date-fns": "^2.0.0-beta.5",
     "formik": "^2.1.4",
     "gulp": "^4.0.2",
@@ -25,6 +26,7 @@
     "redux": "^4.0.4",
     "redux-saga": "^1.0.5",
     "semantic-ui-react": "^0.88.1",
+    "uikit": "^3.3.7",
     "yup": "^0.28.3"
   },
   "devDependencies": {
