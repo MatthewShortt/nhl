@@ -1,6 +1,6 @@
 import React            from 'react';
 import { Formik, Form } from 'formik';
-import FieldElement     from '#components/field-element';
+import FieldElement     from '#components/field-element/field-element';
 import { logon }        from '#domain/users/actions';
 import { useDispatch }  from '#state';
 import { LogonSchema }  from './logon-schema';
@@ -15,6 +15,7 @@ function LogonForm() {
                 initialValues={{ emailOrUsername: '', password: '' }}
                 validationSchema={LogonSchema}
                 onSubmit={({ emailOrUsername, password }) => logon(dispatch, { emailOrUsername, password })}
+                enableReinitialize={true}
             >
                 {({ errors, touched }) => (
                     <Form>

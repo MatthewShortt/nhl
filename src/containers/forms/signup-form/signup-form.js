@@ -1,6 +1,6 @@
 import React            from 'react';
 import { Formik, Form } from 'formik';
-import FieldElement     from '#components/field-element';
+import FieldElement     from '#components/field-element/field-element';
 import { create }       from '#domain/users/actions';
 import { useDispatch }  from '#state';
 import { SignupSchema } from './signup-schema';
@@ -15,6 +15,7 @@ function SignupForm() {
                 initialValues={{ email: '', username: '', password: '', confirmPassword: '' }}
                 validationSchema={SignupSchema}
                 onSubmit={({ email, username, password }) => create(dispatch, { email, username, password })}
+                enableReinitialize={true}
             >
                 {({ errors, touched }) => (
                     <Form>
