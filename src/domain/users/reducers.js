@@ -1,5 +1,7 @@
 const { persistentReducer } = require('#state/persistentReducer');
-const { USER_LOGON_SUCCESS, EMAIL_OR_USERNAME_DOES_NOT_EXIST, INCORRECT_PASSWORD, USER_CREATE_SUCCESS } = require('./constants');
+const { USER_LOGON_SUCCESS, EMAIL_OR_USERNAME_DOES_NOT_EXIST, INCORRECT_PASSWORD, USER_CREATE_SUCCESS, EMAIL_ALREADY_EXISTS, USERNAME_ALREADY_EXISTS} = require('./constants');
+const uikit = require('uikit');
+
 
 const USER_KEY = 'user';
 
@@ -16,7 +18,9 @@ function userReducer(state = userInitialState, action) {
             return { token: action.data.token, error: null, data: action.data.data };
         case EMAIL_OR_USERNAME_DOES_NOT_EXIST:
         case INCORRECT_PASSWORD:
-            console.log(action.data);
+        case EMAIL_ALREADY_EXISTS:
+        case USERNAME_ALREADY_EXISTS:
+            uikit.notification({message: action.data, pos: 'top-right', status: 'danger', timeout: 1500});
             return {...state, error: action.data};
         default:
             return state;

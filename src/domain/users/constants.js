@@ -24,10 +24,38 @@ export const USER_LOGON_ERRORS = {
  * User Create Constants
  */
 export const USER_CREATE_SUCCESS = 'USER_CREATE_SUCCESS';
+export const EMAIL_ALREADY_EXISTS = 'EMAIL_ALREADY_EXISTS';
+export const USERNAME_ALREADY_EXISTS = 'USERNAME_ALREADY_EXISTS';
 export const USER_CREATE_ERROR = 'USER_CREATE_ERROR';
+export const USER_CREATE_ERRORS = {
+    EMAIL_ALREADY_EXISTS: {
+        type: EMAIL_ALREADY_EXISTS,
+        data: 'Email already exists.'
+    },
+    USERNAME_ALREADY_EXISTS: {
+        type: USERNAME_ALREADY_EXISTS,
+        data: 'Username already exists.'
+    },
+    USER_CREATE_ERROR: {
+        type: USER_CREATE_ERROR,
+        data: 'A connection error occurred.'
+    }
+};
+
 
 /*
  * User Reset Password Request Constants
  */
 export const USER_PASSWORD_RESET_REQUEST_SUCCESS = 'USER_PASSWORD_RESET_REQUEST_SUCCESS';
+export const EMAIL_DOES_NOT_EXIST = 'EMAIL_DOES_NOT_EXIST';
 export const USER_PASSWORD_RESET_REQUEST_ERROR = 'USER_PASSWORD_RESET_REQUEST_ERROR';
+export const USER_PASSWORD_RESET_REQUEST_ERRORS = {
+    EMAIL_DOES_NOT_EXIST: {
+        type: EMAIL_DOES_NOT_EXIST,
+        data: 'Email does not exist.'
+    },
+    USER_PASSWORD_RESET_REQUEST_ERROR: {
+        type: USER_PASSWORD_RESET_REQUEST_ERROR,
+        data: 'A connection error occurred.'
+    }
+};
