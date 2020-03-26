@@ -1,6 +1,6 @@
 import React                          from 'react';
 import { Formik, Form }               from 'formik';
-import FieldElement                   from '#components/field-element/field-element';
+import FieldElement                   from '#components/form-elements/field-element';
 import { resetPasswordRequest }       from '#domain/users/actions';
 import { useDispatch }                from '#state';
 import { ResetPasswordRequestSchema } from './reset-password-request-schema';
