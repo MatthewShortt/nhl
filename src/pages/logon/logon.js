@@ -3,6 +3,7 @@ import FormFlipper from '../../containers/form-flipper/form-flipper';
 import './logon.css';
 
 function LogonLayout() {
+
     return (
         <div className='full-background'>
             <div className='uk-container uk-flex uk-flex-middle uk-height-viewport logon-wrapper'>

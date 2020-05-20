@@ -59,3 +59,8 @@ export const USER_PASSWORD_RESET_REQUEST_ERRORS = {
         data: 'A connection error occurred.'
     }
 };
+
+/*
+ * User Logout Constants
+ */
+export const USER_LOGOUT = 'USER_LOGOUT';

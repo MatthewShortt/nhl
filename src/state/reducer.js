@@ -1,8 +1,12 @@
-import combineReducers from 'react-combine-reducers';
-import user            from '#domain/users/reducers';
+import combineReducers    from 'react-combine-reducers';
+import user               from '#domain/users/reducers';
+import picks              from '#domain/picks/reducers';
+import statsPlayoffPlayer from '#domain/stats/playoff-skater/reducers';
 
 const combinedReducers = combineReducers({
-    ...user
+    ...user,
+    ...picks,
+    ...statsPlayoffPlayer
 });
 
 export const rootReducer = combinedReducers[0];
