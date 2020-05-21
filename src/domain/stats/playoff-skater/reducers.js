@@ -1,27 +1,31 @@
 const uikit = require('uikit');
 const { persistentReducer } = require('#state/persistentReducer');
 
-const { STATS_PLAYOFF_SKATER_GET_SUCCESS, STATS_PLAYOFF_SKATER_GET_ERROR } = require('./constants');
+const { STATS_PLAYOFF_SKATER_GET_SUCCESS, STATS_PLAYOFF_SKATER_GET_ERROR, STATS_PLAYOFF_GOALIE_GET_SUCCESS, STATS_PLAYOFF_GOALIE_GET_ERROR } = require('./constants');
 
-const STATS_PLAYOFF_PLAYER_KEY = 'statsPlayoffPlayer';
+const PLAYOFF_STATS_KEY = 'playoffStats';
 
-const statsPlayoffPlayerInitialState = {
-    stats: [],
+const playoffStatsInitialState = {
+    skater: [],
+    goalie: [],
     error: null
 }
 
-function statsPlayoffPlayerReducer(state = statsPlayoffPlayerInitialState, action) {
+function statsPlayoffPlayerReducer(state = playoffStatsInitialState, action) {
     switch (action.type) {
         case STATS_PLAYOFF_SKATER_GET_SUCCESS:
-            return { stats: action.data, error: null }
+            return { ...state, skater: action.data, error: null }
+        case STATS_PLAYOFF_GOALIE_GET_SUCCESS:
+            return { ...state, goalie: action.data, error: null }
         case STATS_PLAYOFF_SKATER_GET_ERROR:
+        case STATS_PLAYOFF_GOALIE_GET_ERROR:
             uikit.notification({message: action.data, pos: 'top-right', status: 'danger', timeout: 1500});
-            return { stats: [], error: true }
+            return { ...state, error: true }
         default:
             return state;
     }
 }
 
 module.exports = {
-    [STATS_PLAYOFF_PLAYER_KEY]: [persistentReducer(statsPlayoffPlayerReducer, STATS_PLAYOFF_PLAYER_KEY), statsPlayoffPlayerInitialState]
+    [PLAYOFF_STATS_KEY]: [persistentReducer(statsPlayoffPlayerReducer, PLAYOFF_STATS_KEY), playoffStatsInitialState]
 }

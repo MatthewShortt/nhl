@@ -1,8 +1,11 @@
 const uikit = require('uikit');
 const { persistentReducer } = require('#state/persistentReducer');
 // eslint-disable-next-line
-const { PICKS_GET_SUCCESS, PICKS_GET_ERROR, PICKS_UPDATE_SUCCESS, PICKS_UPDATE_ERROR } = require('./constants');
+const { PICKS_GET_SUCCESS, PICKS_GET_ERROR, PICKS_UPDATE_SUCCESS, PICKS_UPDATE_ERROR, PICK_FILTERS_UPDATE, FORWARD, EAST_TEAMS } = require('./constants');
 
+/*
+ * State for the users picks
+ */
 const PICKS_KEY = 'picks';
 
 const pickType = {
@@ -32,7 +35,6 @@ const picksInitialStats = {
 function picksReducer(state = picksInitialStats, action) {
     switch (action.type) {
         case PICKS_GET_SUCCESS:
-            console.log(action.data ? 'data' : 'nodata');
             return action.data ? { players: action.data, error: null } : { ...picksInitialStats };
         case PICKS_GET_ERROR:
             uikit.notification({message: action.data, pos: 'top-right', status: 'danger', timeout: 1500});
@@ -42,6 +44,27 @@ function picksReducer(state = picksInitialStats, action) {
     }
 }
 
+/*
+ * State for the filters applied to visible pick options (eg. East Forward or West Defence)
+ */
+
+const PICK_FILTERS_KEY = 'pickFilters';
+
+const pickFiltersInitialState = {
+    position: FORWARD,
+    teams: EAST_TEAMS
+}
+
+function pickFiltersReducer(state = pickFiltersInitialState, action) {
+    switch (action.type) {
+        case PICK_FILTERS_UPDATE:
+            return { ...action.data }
+        default:
+            return state;
+    }
+}
+
 module.exports = {
-    [PICKS_KEY]: [persistentReducer(picksReducer, PICKS_KEY), picksInitialStats]
+    [PICKS_KEY]: [persistentReducer(picksReducer, PICKS_KEY), picksInitialStats],
+    [PICK_FILTERS_KEY]: [pickFiltersReducer, pickFiltersInitialState]
 };

@@ -5,5 +5,10 @@ export const PlayoffSkaterStatsApi = {
         headers: {
             Authorization: `Bearer ${token}`
         }
+    }),
+    getPlayoffGoalieStats: async ({token}) => client.get('/fantasy/hockey/stats/goalies', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
     })
 };

@@ -13,7 +13,7 @@ export default function App() {
             <Router>
                 <Route path="/login" component={LogonLayout}/>
                 <PrivateRoute exact path='/' component={Home}/>
-                <Route path='/fantasy/nhl' component={NhlFantasy}/>
+                <PrivateRoute path='/fantasy/nhl' component={NhlFantasy}/>
             </Router>
         </StateProvider>
     );
