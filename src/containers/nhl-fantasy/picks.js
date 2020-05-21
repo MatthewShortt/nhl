@@ -31,7 +31,7 @@ function Picks() {
             <h3>West</h3>
             <PlayerRow players={players} conference={WEST_PICKS} onClick={event => console.log({ ...event })}/>
 
-            <h3>Selection Table</h3>
+            <h3 id='selection-table'>Selection Table</h3>
             <form>
                 <fieldset className="uk-fieldset">
                     <div className="uk-margin">
@@ -49,8 +49,8 @@ function Picks() {
             </form>
             {
                 position === 'G'
-                    ? <SelectionTable stats={getFilteredStats(playoffStats.goalie)} config={skaterTableConfig} picks={players} id="selection-table"/>
-                    : <SelectionTable stats={getFilteredStats(playoffStats.skater)} config={skaterTableConfig} picks={players} id="selection-table"/>
+                    ? <SelectionTable stats={getFilteredStats(playoffStats.goalie)} config={skaterTableConfig} picks={players}/>
+                    : <SelectionTable stats={getFilteredStats(playoffStats.skater)} config={skaterTableConfig} picks={players}/>
             }
         </div>
     );

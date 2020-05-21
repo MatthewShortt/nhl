@@ -37,7 +37,9 @@ function Player({ id, name, team, position }) {
             </div>
             <div className='uk-inline'>
                 <img className='uk-border-circle uk-box-shadow-small' width='175' height='175' src='https://assets.nhle.com/mugs/nhl/default-skater.png' alt={name}/>
-                <button className='uk-position-bottom-left uk-button uk-button-link uk-text-success' data-uk-icon='icon: plus-circle; ratio: 1.25' onClick={() => console.log(`Add ${positions[position]}`)}/>
+                <a href='#selection-table' data-uk-scroll>
+                    <button className='uk-position-bottom-left uk-button uk-button-link uk-text-success' data-uk-icon='icon: plus-circle; ratio: 1.25' onClick={() => console.log(`Add ${positions[position]}`)}/>
+                </a>
                 <img className='uk-position-bottom-right team-logo' src={`http://www-league.nhlstatic.com/images/logos/league-dark/133-flat.svg`} alt={name}/>
             </div>
             <div className='uk-inline uk-width-1-1 uk-padding-small'>
