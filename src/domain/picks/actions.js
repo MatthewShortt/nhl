@@ -8,6 +8,6 @@ export function getPicks(dispatch, { token }) {
         .catch(error => dispatch({ type: PICKS_GET_ERROR, data: 'Error retrieving picks.' }));
 }
 
-export function updatePickFilters(dispatch, { position, teams }) {
-    dispatch({ type: PICK_FILTERS_UPDATE, data: { position, teams } });
+export function updatePickFilters(dispatch, { position, teams, active }) {
+    dispatch({ type: PICK_FILTERS_UPDATE, data: { position, teams, active } });
 }

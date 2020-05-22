@@ -40,3 +40,21 @@ export const GOALIE  = 'G';
  */
 export const EAST_TEAMS = ['BOS', 'TBL', 'TOR', 'FLA', 'MTL', 'BUF', 'OTT', 'DET', 'WSH', 'PHI', 'PIT', 'CAR', 'CLB', 'NYI', 'NYR', 'NJD'];
 export const WEST_TEAMS = ['STL', 'COL', 'DAL', 'WPG', 'NSH', 'MIN', 'CHI', 'VGK', 'EDM', 'CGY', 'VAN', 'ARI', 'ANA', 'LAK', 'SJS'];
+
+/*
+ * Conferences
+ */
+export const EAST = 'EAST';
+export const WEST = 'WEST';
+
+/*
+ * Pick Active Filter
+ */
+export const ACTIVE_FILTER = {
+    [`${EAST_TEAMS}_${FORWARD}`]: `${EAST}_${FORWARD}`,
+    [`${EAST_TEAMS}_${DEFENCE}`]: `${EAST}_${DEFENCE}`,
+    [`${EAST_TEAMS}_${GOALIE}`]: `${EAST}_${GOALIE}`,
+    [`${WEST_TEAMS}_${FORWARD}`]: `${WEST}_${FORWARD}`,
+    [`${WEST_TEAMS}_${DEFENCE}`]: `${WEST}_${DEFENCE}`,
+    [`${WEST_TEAMS}_${GOALIE}`]: `${WEST}_${GOALIE}`
+};

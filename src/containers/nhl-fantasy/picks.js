@@ -4,12 +4,13 @@ import { getPicks, updatePickFilters }                                          
 import { DEFENCE, EAST_PICKS, EAST_TEAMS, FORWARD, GOALIE, WEST_PICKS, WEST_TEAMS } from '#domain/picks/constants';
 import { getPlayoffGoalieStats, getPlayoffSkaterStats }                             from '#domain/stats/playoff-skater/actions';
 import PlayerRow                                                                    from '#components/player-row/player-row';
+import SelectionTableOption                                                         from '#components/selection-table-option/selection-table-option';
 import SelectionTable                                                               from '#containers/selection-table/selection-table';
 import './nhl-fantasy.css';
 
 function Picks() {
 
-    const [{ user: { token }, picks: { players }, pickFilters: { position, teams }, playoffStats }, dispatch] = useStateValue();
+    const [{ user: { token }, picks: { players }, pickFilters: { position, teams, active }, playoffStats }, dispatch] = useStateValue();
     useEffect(() => {
         getPicks(dispatch, { token });
         getPlayoffSkaterStats(dispatch, { token });
@@ -29,7 +30,7 @@ function Picks() {
             <PlayerRow players={players} conference={EAST_PICKS}/>
 
             <h3>West</h3>
-            <PlayerRow players={players} conference={WEST_PICKS} onClick={event => console.log({ ...event })}/>
+            <PlayerRow players={players} conference={WEST_PICKS}/>
 
             <h3 id='selection-table'>Selection Table</h3>
             <form>
@@ -37,12 +38,12 @@ function Picks() {
                     <div className="uk-margin">
                         <select className="uk-select"
                                 onChange={updatePickFilterFromEvent}>
-                            <option value={`{ "position": "${FORWARD}", "teams": "${EAST_TEAMS}" }`}>East Forwards</option>
-                            <option value={`{ "position": "${DEFENCE}", "teams": "${EAST_TEAMS}" }`}>East Defence</option>
-                            <option value={`{ "position": "${GOALIE}" , "teams": "${EAST_TEAMS}" }`}>East Goalies</option>
-                            <option value={`{ "position": "${FORWARD}", "teams": "${WEST_TEAMS}" }`}>West Forwards</option>
-                            <option value={`{ "position": "${DEFENCE}", "teams": "${WEST_TEAMS}" }`}>West Defence</option>
-                            <option value={`{ "position": "${GOALIE}" , "teams": "${WEST_TEAMS}" }`}>West Goalies</option>
+                            <SelectionTableOption active={active} player={FORWARD} teams={EAST_TEAMS} text='East Forwards'/>
+                            <SelectionTableOption active={active} player={DEFENCE} teams={EAST_TEAMS} text='East Defence' />
+                            <SelectionTableOption active={active} player={GOALIE}  teams={EAST_TEAMS} text='East Goalies' />
+                            <SelectionTableOption active={active} player={FORWARD} teams={WEST_TEAMS} text='West Forwards'/>
+                            <SelectionTableOption active={active} player={DEFENCE} teams={WEST_TEAMS} text='West Defence' />
+                            <SelectionTableOption active={active} player={GOALIE}  teams={WEST_TEAMS} text='West Goalies' />
                         </select>
                     </div>
                 </fieldset>
@@ -71,8 +72,8 @@ function Picks() {
      * @param event : SyntheticEvent
      */
     function updatePickFilterFromEvent(event) {
-        const { position, teams } = JSON.parse(event.target.value);
-        updatePickFilters(dispatch, { position, teams });
+        const { position, teams, active } = JSON.parse(event.target.value);
+        updatePickFilters(dispatch, { position, teams, active });
     }
 }
 
