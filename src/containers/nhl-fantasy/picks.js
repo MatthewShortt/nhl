@@ -1,7 +1,7 @@
 import React, { useEffect }                                                         from 'react';
 import { useStateValue }                                                            from '#state';
 import { getPicks, updatePickFilters }                                              from '#domain/picks/actions';
-import { DEFENCE, EAST_PICKS, EAST_TEAMS, FORWARD, GOALIE, WEST_PICKS, WEST_TEAMS } from '#domain/picks/constants';
+import { DEFENCE, EAST_PICKS, FORWARD, GOALIE, WEST_PICKS, TEAMS, EAST, WEST }      from '#domain/picks/constants';
 import { getPlayoffGoalieStats, getPlayoffSkaterStats }                             from '#domain/stats/playoff-skater/actions';
 import PlayerRow                                                                    from '#components/player-row/player-row';
 import SelectionTableOption                                                         from '#components/selection-table-option/selection-table-option';
@@ -38,12 +38,12 @@ function Picks() {
                     <div className="uk-margin">
                         <select className="uk-select"
                                 onChange={updatePickFilterFromEvent}>
-                            <SelectionTableOption active={active} player={FORWARD} teams={EAST_TEAMS} text='East Forwards'/>
-                            <SelectionTableOption active={active} player={DEFENCE} teams={EAST_TEAMS} text='East Defence' />
-                            <SelectionTableOption active={active} player={GOALIE}  teams={EAST_TEAMS} text='East Goalies' />
-                            <SelectionTableOption active={active} player={FORWARD} teams={WEST_TEAMS} text='West Forwards'/>
-                            <SelectionTableOption active={active} player={DEFENCE} teams={WEST_TEAMS} text='West Defence' />
-                            <SelectionTableOption active={active} player={GOALIE}  teams={WEST_TEAMS} text='West Goalies' />
+                            <SelectionTableOption active={active} player={FORWARD} teams={TEAMS[EAST]} text='East Forwards'/>
+                            <SelectionTableOption active={active} player={DEFENCE} teams={TEAMS[EAST]} text='East Defence' />
+                            <SelectionTableOption active={active} player={GOALIE}  teams={TEAMS[EAST]} text='East Goalies' />
+                            <SelectionTableOption active={active} player={FORWARD} teams={TEAMS[WEST]} text='West Forwards'/>
+                            <SelectionTableOption active={active} player={DEFENCE} teams={TEAMS[WEST]} text='West Defence' />
+                            <SelectionTableOption active={active} player={GOALIE}  teams={TEAMS[WEST]} text='West Goalies' />
                         </select>
                     </div>
                 </fieldset>

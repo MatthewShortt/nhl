@@ -36,25 +36,27 @@ export const DEFENCE = 'D';
 export const GOALIE  = 'G';
 
 /*
- * Pick Team Filter
- */
-export const EAST_TEAMS = ['BOS', 'TBL', 'TOR', 'FLA', 'MTL', 'BUF', 'OTT', 'DET', 'WSH', 'PHI', 'PIT', 'CAR', 'CLB', 'NYI', 'NYR', 'NJD'];
-export const WEST_TEAMS = ['STL', 'COL', 'DAL', 'WPG', 'NSH', 'MIN', 'CHI', 'VGK', 'EDM', 'CGY', 'VAN', 'ARI', 'ANA', 'LAK', 'SJS'];
-
-/*
  * Conferences
  */
 export const EAST = 'EAST';
 export const WEST = 'WEST';
 
 /*
+ * Pick Team Filter
+ */
+export const TEAMS = {
+    [EAST]: ['BOS', 'TBL', 'TOR', 'FLA', 'MTL', 'BUF', 'OTT', 'DET', 'WSH', 'PHI', 'PIT', 'CAR', 'CLB', 'NYI', 'NYR', 'NJD'],
+    [WEST]: ['STL', 'COL', 'DAL', 'WPG', 'NSH', 'MIN', 'CHI', 'VGK', 'EDM', 'CGY', 'VAN', 'ARI', 'ANA', 'LAK', 'SJS']
+}
+
+/*
  * Pick Active Filter
  */
 export const ACTIVE_FILTER = {
-    [`${EAST_TEAMS}_${FORWARD}`]: `${EAST}_${FORWARD}`,
-    [`${EAST_TEAMS}_${DEFENCE}`]: `${EAST}_${DEFENCE}`,
-    [`${EAST_TEAMS}_${GOALIE}`]: `${EAST}_${GOALIE}`,
-    [`${WEST_TEAMS}_${FORWARD}`]: `${WEST}_${FORWARD}`,
-    [`${WEST_TEAMS}_${DEFENCE}`]: `${WEST}_${DEFENCE}`,
-    [`${WEST_TEAMS}_${GOALIE}`]: `${WEST}_${GOALIE}`
+    [`${TEAMS[EAST]}_${FORWARD}`]: `${EAST}_${FORWARD}`,
+    [`${TEAMS[EAST]}_${DEFENCE}`]: `${EAST}_${DEFENCE}`,
+    [`${TEAMS[EAST]}_${GOALIE}`]: `${EAST}_${GOALIE}`,
+    [`${TEAMS[WEST]}_${FORWARD}`]: `${WEST}_${FORWARD}`,
+    [`${TEAMS[WEST]}_${DEFENCE}`]: `${WEST}_${DEFENCE}`,
+    [`${TEAMS[WEST]}_${GOALIE}`]: `${WEST}_${GOALIE}`
 };

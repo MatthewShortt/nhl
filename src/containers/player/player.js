@@ -1,5 +1,9 @@
-import React from 'react';
+import React                                from 'react';
+import { updatePickFilters }                from '#domain/picks/actions';
+import { ACTIVE_FILTER, EAST, TEAMS, WEST } from '#domain/picks/constants';
+import { useDispatch }                      from '#state';
 
+// TODO: Remove this or move to constants
 const positions = {
     'ef1': 'Forward 1',
     'ef2': 'Forward 2',
@@ -13,9 +17,18 @@ const positions = {
     'wd1': 'Defence 1',
     'wd2': 'Defence 2',
     'wg': 'Goalie',
-}
+};
+
+// TODO: Remove once variables are changed
+const conferenceMap = {
+    'e': EAST,
+    'w': WEST
+};
 
 function Player({ id, name, team, position }) {
+
+    const dispatch = useDispatch();
+
     return id ? (
         <div>
             <div className='uk-inline uk-width-1-1'>
@@ -37,7 +50,7 @@ function Player({ id, name, team, position }) {
             </div>
             <div className='uk-inline'>
                 <img className='uk-border-circle uk-box-shadow-small' width='175' height='175' src='https://assets.nhle.com/mugs/nhl/default-skater.png' alt={name}/>
-                <a href='#selection-table' data-uk-scroll>
+                <a href='#selection-table' data-uk-scroll onClick={filterSelection}>
                     <button className='uk-position-bottom-left uk-button uk-button-link uk-text-success' data-uk-icon='icon: plus-circle; ratio: 1.25' onClick={() => console.log(`Add ${positions[position]}`)}/>
                 </a>
                 <img className='uk-position-bottom-right team-logo' src={`http://www-league.nhlstatic.com/images/logos/league-dark/133-flat.svg`} alt={name}/>
@@ -47,6 +60,14 @@ function Player({ id, name, team, position }) {
             </div>
         </div>
     );
+
+    // TODO: Fix once position split is better
+    function filterSelection() {
+        const [conference, pos] = position.split('');
+        const c                 = conferenceMap[conference];
+        const p                 = pos.toUpperCase();
+        updatePickFilters(dispatch, { position: p, teams: TEAMS[c], active: ACTIVE_FILTER[`${TEAMS[c]}_${p}`] });
+    }
 }
 
 export default Player;

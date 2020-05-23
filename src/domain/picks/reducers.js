@@ -1,7 +1,7 @@
 const uikit = require('uikit');
 const { persistentReducer } = require('#state/persistentReducer');
 // eslint-disable-next-line
-const { PICKS_GET_SUCCESS, PICKS_GET_ERROR, PICKS_UPDATE_SUCCESS, PICKS_UPDATE_ERROR, PICK_FILTERS_UPDATE, FORWARD, EAST_TEAMS, ACTIVE_FILTER } = require('./constants');
+const { PICKS_GET_SUCCESS, PICKS_GET_ERROR, PICKS_UPDATE_SUCCESS, PICKS_UPDATE_ERROR, PICK_FILTERS_UPDATE, FORWARD, ACTIVE_FILTER, TEAMS, EAST } = require('./constants');
 
 /*
  * State for the users picks
@@ -52,9 +52,9 @@ const PICK_FILTERS_KEY = 'pickFilters';
 
 const pickFiltersInitialState = {
     position: FORWARD,
-    teams: EAST_TEAMS,
-    active: ACTIVE_FILTER[`${EAST_TEAMS}_${FORWARD}`]
-}
+    teams: TEAMS[EAST],
+    active: ACTIVE_FILTER[`${TEAMS[EAST]}_${FORWARD}`]
+};
 
 function pickFiltersReducer(state = pickFiltersInitialState, action) {
     switch (action.type) {

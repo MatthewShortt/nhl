@@ -1,6 +1,6 @@
 import React  from 'react';
 import _      from 'lodash';
-import Player from '#components/player/player';
+import Player from '#containers/player/player';
 
 function PlayerRow({players, conference}) {
 
