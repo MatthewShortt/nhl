@@ -1,11 +1,11 @@
-import React, { useEffect }                                                         from 'react';
-import { useStateValue }                                                            from '#state';
-import { getPicks, updatePickFilters }                                              from '#domain/picks/actions';
-import { DEFENCE, EAST_PICKS, FORWARD, GOALIE, WEST_PICKS, TEAMS, EAST, WEST }      from '#domain/picks/constants';
-import { getPlayoffGoalieStats, getPlayoffSkaterStats }                             from '#domain/stats/playoff-skater/actions';
-import PlayerRow                                                                    from '#components/player-row/player-row';
-import SelectionTableOption                                                         from '#components/selection-table-option/selection-table-option';
-import SelectionTable                                                               from '#containers/selection-table/selection-table';
+import React, { useEffect }                                                    from 'react';
+import { useStateValue }                                                       from '#state';
+import { getPicks, updatePickFilters }                                         from '#domain/picks/actions';
+import { DEFENCE, EAST, EAST_PICKS, FORWARD, GOALIE, TEAMS, WEST, WEST_PICKS } from '#domain/picks/constants';
+import { getPlayoffGoalieStats, getPlayoffSkaterStats }                        from '#domain/stats/playoff-skater/actions';
+import PlayerRow                                                               from '#components/player-row/player-row';
+import SelectionTableOption                                                    from '#components/selection-table-option/selection-table-option';
+import SelectionTable                                                          from '#containers/selection-table/selection-table';
 import './nhl-fantasy.css';
 
 function Picks() {
@@ -50,8 +50,8 @@ function Picks() {
             </form>
             {
                 position === 'G'
-                    ? <SelectionTable stats={getFilteredStats(playoffStats.goalie)} config={skaterTableConfig} picks={players}/>
-                    : <SelectionTable stats={getFilteredStats(playoffStats.skater)} config={skaterTableConfig} picks={players}/>
+                    ? <SelectionTable stats={getFilteredStats(playoffStats.goalie)} config={skaterTableConfig} picks={players} activeFilter={active}/>
+                    : <SelectionTable stats={getFilteredStats(playoffStats.skater)} config={skaterTableConfig} picks={players} activeFilter={active}/>
             }
         </div>
     );

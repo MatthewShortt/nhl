@@ -1,7 +1,7 @@
 const uikit = require('uikit');
 const { persistentReducer } = require('#state/persistentReducer');
 // eslint-disable-next-line
-const { PICKS_GET_SUCCESS, PICKS_GET_ERROR, PICKS_UPDATE_SUCCESS, PICKS_UPDATE_ERROR, PICK_FILTERS_UPDATE, FORWARD, ACTIVE_FILTER, TEAMS, EAST } = require('./constants');
+const { PICKS_GET_SUCCESS, PICKS_GET_ERROR, PICKS_UPDATE_SUCCESS, PICKS_UPDATE_ERROR, PICK_ADD, PICK_REMOVE, PICK_FILTERS_UPDATE, FORWARD, ACTIVE_FILTER, TEAMS, EAST } = require('./constants');
 
 /*
  * State for the users picks
@@ -39,6 +39,10 @@ function picksReducer(state = picksInitialStats, action) {
         case PICKS_GET_ERROR:
             uikit.notification({message: action.data, pos: 'top-right', status: 'danger', timeout: 1500});
             return { ...state, error: action.data};
+        case PICK_ADD:
+            return { players: { ...state.players, [action.data.position]: { ...action.data.attributes } }, error: null };
+        case PICK_REMOVE:
+            return { players: { ...state.players, [action.data.position]: pickType }, error: null };
         default:
             return state;
     }
