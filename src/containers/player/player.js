@@ -1,5 +1,5 @@
 import React                                from 'react';
-import { updatePickFilters }                from '#domain/picks/actions';
+import { removePick, updatePickFilters }    from '#domain/picks/actions';
 import { ACTIVE_FILTER, EAST, TEAMS, WEST } from '#domain/picks/constants';
 import { useDispatch }                      from '#state';
 
@@ -36,7 +36,7 @@ function Player({ id, name, team, position }) {
             </div>
             <div className='uk-inline'>
                 <img className='uk-border-circle uk-box-shadow-small cursor-pointer' width='175' height='175' src={`https://assets.nhle.com/mugs/nhl/20192020/${team}/${id}.png`} alt={name} onClick={() => console.log(`Hello ${name}`)}/>
-                <button className='uk-position-bottom-left uk-button uk-button-link uk-text-danger' data-uk-icon='minus-circle' onClick={() => console.log(`Removing ${name}`)}/>
+                <button className='uk-position-bottom-left uk-button uk-button-link uk-text-danger' data-uk-icon='minus-circle' onClick={() => removePick(dispatch, { position })}/>
                 <img className='uk-position-bottom-right team-logo' src={`https://assets.nhle.com/logos/nhl/svg/${team}_light.svg`} alt={name}/>
             </div>
             <div className='uk-inline uk-width-1-1 uk-padding-small'>
