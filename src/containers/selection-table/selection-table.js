@@ -10,7 +10,7 @@ function SelectionTable({ stats, config, picks, activeFilter }) {
 
     useEffect(() => {
         setTablePlayers(stats);
-    }, [activeFilter]);
+    }, [activeFilter, stats]);
 
     useEffect(() => {
         setPickIds(getPickIds());
