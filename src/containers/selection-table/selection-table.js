@@ -1,16 +1,29 @@
-import React                 from 'react';
-import PlayerOperationButton from '#containers/player-operation-button/player-operation-button';
-import { PICK_KEYS }         from '#domain/picks/constants';
+import React, { useEffect, useState } from 'react';
+import PlayerOperationButton          from '#containers/player-operation-button/player-operation-button';
+import { PICK_KEYS }                  from '#domain/picks/constants';
 
 function SelectionTable({ stats, config, picks, activeFilter }) {
 
-    const pickIds            = Object.keys(picks).map(key => picks[key].id);
-    const availablePickSlots = getAvailablePickSlots();
+    const [pickIds, setPickIds]                       = useState(getPickIds());
+    const [availablePickSlots, setAvailablePickSlots] = useState(getAvailablePickSlots());
+    const [tablePlayers, setTablePlayers]             = useState(stats);
+
+    useEffect(() => {
+        setTablePlayers(stats);
+    }, [activeFilter]);
+
+    useEffect(() => {
+        setPickIds(getPickIds());
+        setAvailablePickSlots(getAvailablePickSlots());
+    }, [activeFilter, picks]);
 
     return (
-        <div className="uk-overflow-auto">
-            <table
-                className="uk-table uk-table-small uk-table-divider uk-table-striped uk-table-hover uk-text-left uk-text-small">
+        <div className='uk-overflow-auto'>
+            <form className='uk-search uk-search-default uk-width-1-1' onSubmit={e => e.preventDefault()}>
+                <span data-uk-search-icon/>
+                <input className='uk-search-input' type='search' placeholder='Search...' onChange={searchPlayers}/>
+            </form>
+            <table className='uk-table uk-table-small uk-table-divider uk-table-striped uk-table-hover uk-text-left uk-text-small uk-table-middle'>
                 <thead>
                 <tr>
                     <th/>
@@ -22,7 +35,7 @@ function SelectionTable({ stats, config, picks, activeFilter }) {
                 </tr>
                 </thead>
                 <tbody>
-                {stats.map((player, i) =>
+                {tablePlayers.map((player, i) =>
                     <tr key={`player_row_${i}`}>
                         <td>
                             <PlayerOperationButton isSelected={isSelected(player.id)} availablePickSlots={availablePickSlots} picks={picks} id={player.id} name={player.name} team={player.team} />
@@ -57,6 +70,24 @@ function SelectionTable({ stats, config, picks, activeFilter }) {
      */
     function getAvailablePickSlots() {
         return PICK_KEYS[activeFilter].filter(key => picks[key].id === '');
+    }
+
+    /**
+     * Extracts the player ids of the users picks into an array
+     *
+     * @returns {array} - player ids of the users picks
+     */
+    function getPickIds() {
+        return Object.keys(picks).map(key => picks[key].id);
+    }
+
+    /**
+     * Filters the current players by the contents of the search field
+     *
+     * @param event : SyntheticEvent
+     */
+    function searchPlayers(event) {
+        setTablePlayers(stats.filter(player => player.name.toLowerCase().search(event.target.value.trim()) !== -1));
     }
 
 }
