@@ -1,21 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import PlayerOperationButton          from '#containers/player-operation-button/player-operation-button';
-import { PICK_KEYS }                  from '#domain/picks/constants';
+import React, { useEffect, useMemo, useState } from 'react';
+import PlayerOperationButton                   from '#containers/player-operation-button/player-operation-button';
+import { PICK_KEYS }                           from '#domain/picks/constants';
 
 function SelectionTable({ stats, config, picks, activeFilter }) {
 
-    const [pickIds, setPickIds]                       = useState(getPickIds());
-    const [availablePickSlots, setAvailablePickSlots] = useState(getAvailablePickSlots());
-    const [tablePlayers, setTablePlayers]             = useState(stats);
+    const pickIds            = useMemo(() => getPickIds(picks), [picks]);
+    const availablePickSlots = useMemo(() => getAvailablePickSlots(activeFilter, picks), [activeFilter, picks]);
+
+    const [tablePlayers, setTablePlayers] = useState(stats);
 
     useEffect(() => {
         setTablePlayers(stats);
     }, [activeFilter, stats]);
-
-    useEffect(() => {
-        setPickIds(getPickIds());
-        setAvailablePickSlots(getAvailablePickSlots());
-    }, [activeFilter, picks]);
 
     return (
         <div className='uk-overflow-auto'>
@@ -66,18 +62,21 @@ function SelectionTable({ stats, config, picks, activeFilter }) {
      * Computes the available pick slots for the active filter.
      * If an empty array is returned all pick slots are taken for the active filter.
      *
+     * @param activeFilter - the active filter being used
+     * @param picks - the user's picks
      * @returns {array} - available pick slots for the given active filter
      */
-    function getAvailablePickSlots() {
+    function getAvailablePickSlots(activeFilter, picks) {
         return PICK_KEYS[activeFilter].filter(key => picks[key].id === '');
     }
 
     /**
      * Extracts the player ids of the users picks into an array
      *
+     * @param picks - the user's picks
      * @returns {array} - player ids of the users picks
      */
-    function getPickIds() {
+    function getPickIds(picks) {
         return Object.keys(picks).map(key => picks[key].id);
     }
 
