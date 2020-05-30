@@ -1,5 +1,4 @@
 const _ = require('lodash');
-// const { client } = require('../../api.client');
 const { UserApi } = require('./api');
 const {
     USER_LOGON_SUCCESS, USER_LOGON_ERROR, USER_LOGON_ERRORS,
@@ -29,11 +28,6 @@ export function resetPasswordRequest(dispatch, { email }) {
 export function logout(dispatch) {
     return dispatch({type: USER_LOGOUT});
 }
-
-// function dispatchAndUpdateApiClient(dispatch, event, data) {
-//     client.defaults.headers = {'Authorization': 'Bearer ' + data.token};
-//     dispatch({ type: event, data: data });
-// }
 
 function getErrorPayload(errorGroup, errorDefault, error) {
     return errorGroup[_.get(error, 'response.data.message') || errorDefault];
