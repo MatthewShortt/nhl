@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import PlayerOperationButton                   from '#containers/player-operation-button/player-operation-button';
-import { PICK_KEYS }                           from '#domain/picks/constants';
+import React, { createRef, useEffect, useMemo, useState } from 'react';
+import PlayerOperationButton                              from '#containers/player-operation-button/player-operation-button';
+import { PICK_KEYS }                                      from '#domain/picks/constants';
 
 function SelectionTable({ stats, config, picks, activeFilter }) {
 
@@ -8,16 +8,17 @@ function SelectionTable({ stats, config, picks, activeFilter }) {
     const availablePickSlots = useMemo(() => getAvailablePickSlots(activeFilter, picks), [activeFilter, picks]);
 
     const [tablePlayers, setTablePlayers] = useState(stats);
-
     useEffect(() => setTablePlayers(stats), [activeFilter, stats]);
 
+    const tableDivRef = createRef();
+
     return (
-        <div>
+        <div className='uk-inline uk-width-1-1'>
             <form className='uk-search uk-search-default uk-width-1-1' onSubmit={e => e.preventDefault()}>
                 <span data-uk-search-icon/>
                 <input className='uk-search-input' type='search' placeholder='Search...' onChange={searchPlayers}/>
             </form>
-            <div className='uk-overflow-auto uk-height-large uk-margin-medium-top uk-box-shadow-large'>
+            <div ref={tableDivRef} className='uk-overflow-auto uk-height-large uk-margin-medium-top uk-box-shadow-large'>
                 <table className='uk-table uk-table-small uk-table-divider uk-table-striped uk-table-hover uk-text-left uk-text-small uk-table-middle'>
                     <thead className='uk-background-secondary'>
                         <tr>
@@ -45,6 +46,7 @@ function SelectionTable({ stats, config, picks, activeFilter }) {
                     </tbody>
                 </table>
             </div>
+            <span className='uk-position-bottom-right uk-icon-button uk-background-secondary cursor-pointer' data-uk-icon='chevron-up' onClick={() => tableDivRef.current.scrollTo({top: 0, behavior: 'smooth'})}/>
         </div>
     );
 
