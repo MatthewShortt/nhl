@@ -21,6 +21,15 @@ export const PICK_REMOVE = 'PICK_REMOVE';
  */
 export const PICK_FILTERS_UPDATE = 'PICK_FILTERS_UPDATE';
 
+
+/*
+ * Pick Swap Update Constants
+ */
+export const PICK_SWAP_UPDATE            = 'PICK_SWAP_UPDATE';
+export const PICK_SWAP_RESTORE           = 'PICK_SWAP_RESTORE';
+export const PICK_SWAP_OUT_PLAYER_ADD    = 'PICK_SWAP_OUT_PLAYER_ADD';
+export const PICK_SWAP_OUT_PLAYER_REMOVE = 'PICK_SWAP_OUT_PLAYER_REMOVE';
+
 /*
  * Pick Position Filter
  */

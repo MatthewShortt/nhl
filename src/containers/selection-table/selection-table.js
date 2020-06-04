@@ -1,6 +1,8 @@
 import React, { createRef, useEffect, useMemo, useState } from 'react';
 import PlayerOperationButton                              from '#containers/player-operation-button/player-operation-button';
 import { PICK_KEYS }                                      from '#domain/picks/constants';
+import PlayerSwapModal                                    from '#containers/player-swap-modal/player-swap-modal';
+import PlayerSwapModalConfirm                             from '#containers/player-swap-modal/player-swap-modal-confirm';
 
 function SelectionTable({ stats, config, picks, activeFilter }) {
 
@@ -34,7 +36,7 @@ function SelectionTable({ stats, config, picks, activeFilter }) {
                     {tablePlayers.map((player, i) =>
                         <tr key={`player_row_${i}`}>
                             <td>
-                                <PlayerOperationButton isSelected={isSelected(player.id)} availablePickSlots={availablePickSlots} picks={picks} id={player.id} name={player.name} team={player.team} />
+                                <PlayerOperationButton isSelected={isSelected(player.id)} activeFilter={activeFilter} availablePickSlots={availablePickSlots} picks={picks} id={player.id} name={player.name} team={player.team} />
                             </td>
                             {config.keys.map((key, j) =>
                                 <td key={`player_cell_${i}-${j}`}>
@@ -47,6 +49,8 @@ function SelectionTable({ stats, config, picks, activeFilter }) {
                 </table>
             </div>
             <span className='uk-position-bottom-right uk-icon-button uk-background-secondary cursor-pointer' data-uk-icon='chevron-up' onClick={() => tableDivRef.current.scrollTo({top: 0, behavior: 'smooth'})}/>
+            <PlayerSwapModal/>
+            <PlayerSwapModalConfirm/>
         </div>
     );
 

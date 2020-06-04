@@ -1,6 +1,6 @@
 const uikit = require('uikit');
 const { persistentReducer } = require('#state/persistentReducer');
-const { PICKS_GET_SUCCESS, PICKS_GET_ERROR, PICKS_UPDATE_SUCCESS, PICKS_UPDATE_ERROR, PICK_ADD, PICK_REMOVE, PICK_FILTERS_UPDATE, FORWARD, ACTIVE_FILTER, TEAMS, EAST } = require('./constants');
+const { PICKS_GET_SUCCESS, PICKS_GET_ERROR, PICKS_UPDATE_SUCCESS, PICKS_UPDATE_ERROR, PICK_ADD, PICK_REMOVE, PICK_FILTERS_UPDATE, PICK_SWAP_UPDATE, PICK_SWAP_RESTORE, PICK_SWAP_OUT_PLAYER_ADD, PICK_SWAP_OUT_PLAYER_REMOVE, FORWARD, ACTIVE_FILTER, TEAMS, EAST } = require('./constants');
 
 /*
  * State for the users picks
@@ -72,7 +72,41 @@ function pickFiltersReducer(state = pickFiltersInitialState, action) {
     }
 }
 
+/*
+ * State for the player swap modal
+ */
+
+const PICK_SWAP_KEY = 'pickSwap';
+
+const swapPickType = {
+    ...pickType,
+    position: ''
+}
+
+const pickSwapInitialState = {
+    swapIn: swapPickType,
+    swapOut: swapPickType,
+    swapOutOptions: []
+}
+
+function pickSwapReducer(state = pickSwapInitialState, action) {
+    switch (action.type) {
+        case PICK_SWAP_UPDATE:
+            return { ...state, ...action.data }
+        case PICK_SWAP_OUT_PLAYER_ADD:
+            return { ...state, ...action.data }
+        case PICK_SWAP_OUT_PLAYER_REMOVE:
+            return { ...state, swapOut: swapPickType }
+        case PICK_SWAP_RESTORE:
+            return pickSwapInitialState;
+        default:
+            return state;
+    }
+}
+
+
 module.exports = {
     [PICKS_KEY]: [persistentReducer(picksReducer, PICKS_KEY), picksInitialStats],
-    [PICK_FILTERS_KEY]: [persistentReducer(pickFiltersReducer, PICK_FILTERS_KEY), pickFiltersInitialState]
+    [PICK_FILTERS_KEY]: [persistentReducer(pickFiltersReducer, PICK_FILTERS_KEY), pickFiltersInitialState],
+    [PICK_SWAP_KEY]: [pickSwapReducer, pickSwapInitialState]
 };

@@ -1,8 +1,11 @@
-import React                   from 'react';
-import { useDispatch }         from '#state';
-import { addPick, removePick } from '#domain/picks/actions';
+import React                                   from 'react';
+import { useDispatch }                         from '#state';
+import { addPick, removePick, updatePickSwap } from '#domain/picks/actions';
+import { PlayerSwapModalElement }              from '#containers/player-swap-modal/player-swap-modal';
+import { PICK_KEYS }                           from '#domain/picks/constants';
+import _                                       from 'lodash';
 
-function PlayerOperationButton({ isSelected, availablePickSlots, picks, id, name, team }) {
+function PlayerOperationButton({ isSelected, activeFilter, availablePickSlots, picks, id, name, team }) {
 
     const dispatch = useDispatch();
 
@@ -11,7 +14,7 @@ function PlayerOperationButton({ isSelected, availablePickSlots, picks, id, name
             {
                 !isSelected
                     ? <button className='uk-button uk-button-link uk-text-success' data-uk-icon='icon: plus-circle; ratio: 1.1;' onClick={addPlayer}/>
-                    : <button className='uk-button uk-button-link uk-text-danger'  data-uk-icon='icon: minus-circle; ratio: 1.1;' onClick={removePlayer}/>
+                    : <button className='uk-button uk-button-link uk-text-danger' data-uk-icon='icon: minus-circle; ratio: 1.1;' onClick={removePlayer}/>
             }
         </>
     )
@@ -19,7 +22,14 @@ function PlayerOperationButton({ isSelected, availablePickSlots, picks, id, name
     function addPlayer() {
         availablePickSlots.length
             ? addPick(dispatch, { position: availablePickSlots[0], attributes: { id, name, team } })
-            : alert('All Positions Filled!');
+            : swapPlayer();
+    }
+
+    function swapPlayer() {
+        const swapOutOptions = Object.entries(_.pick(picks, PICK_KEYS[activeFilter])).map(([key, value]) => { return {...value, position: key}; });
+
+        updatePickSwap(dispatch, { swapIn: { id, team, name, position: 'swapIn' }, swapOutOptions })
+        PlayerSwapModalElement.show();
     }
 
     function getPosition() {
