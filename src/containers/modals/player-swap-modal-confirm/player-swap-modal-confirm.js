@@ -4,19 +4,19 @@ import ModalDialogLayout from '#components/modal-layout/modal-dialog-layout';
 import Body              from './body';
 import NavButton         from './nav-button';
 
-let PlayerSwapModalElement;
+let PlayerSwapModalConfirmElement;
 
-function PlayerSwapModal() {
+function PlayerSwapModalConfirm() {
 
-    PlayerSwapModalElement = UIkit.modal('#player-swap-modal');
+    PlayerSwapModalConfirmElement = UIkit.modal('#player-swap-modal-confirm');
 
     return (
-        <ModalDialogLayout id='player-swap-modal' title='Player Swap'>
+        <ModalDialogLayout id='player-swap-modal-confirm' title='Confirm'>
             <Body/>
             <NavButton/>
         </ModalDialogLayout>
     );
 }
 
-export default PlayerSwapModal;
-export { PlayerSwapModalElement };
+export default PlayerSwapModalConfirm;
+export { PlayerSwapModalConfirmElement };

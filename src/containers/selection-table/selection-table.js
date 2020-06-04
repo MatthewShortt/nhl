@@ -2,7 +2,7 @@ import React, { createRef, useEffect, useMemo, useState } from 'react';
 import PlayerOperationButton                              from '#containers/player-operation-button/player-operation-button';
 import { PICK_KEYS }                                      from '#domain/picks/constants';
 import PlayerSwapModal                                    from '#containers/modals/player-swap-modal/player-swap-modal';
-import PlayerSwapModalConfirm                             from '#containers/modals/player-swap-modal/player-swap-modal-confirm';
+import PlayerSwapModalConfirm                             from '#containers/modals/player-swap-modal-confirm/player-swap-modal-confirm';
 
 function SelectionTable({ stats, config, picks, activeFilter }) {
 
