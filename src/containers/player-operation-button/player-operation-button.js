@@ -1,9 +1,9 @@
 import React                                   from 'react';
-import { useDispatch }                         from '#state';
-import { addPick, removePick, updatePickSwap } from '#domain/picks/actions';
-import { PlayerSwapModalElement }              from '#containers/player-swap-modal/player-swap-modal';
-import { PICK_KEYS }                           from '#domain/picks/constants';
 import _                                       from 'lodash';
+import { PlayerSwapModalElement }              from '#containers/modals/player-swap-modal/player-swap-modal';
+import { addPick, removePick, updatePickSwap } from '#domain/picks/actions';
+import { PICK_KEYS }                           from '#domain/picks/constants';
+import { useDispatch }                         from '#state';
 
 function PlayerOperationButton({ isSelected, activeFilter, availablePickSlots, picks, id, name, team }) {
 
