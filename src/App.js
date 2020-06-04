@@ -1,11 +1,11 @@
 import React                              from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import PrivateRoute                       from '#components/route/private-route';
+import LogonLayout                        from '#pages/logon/logon';
+import Home                               from '#pages/home/home';
+import NhlFantasy                         from '#pages/nhl-fantasy/nhl-fantasy';
 import { StateProvider }                  from '#state';
 import { rootInitialState, rootReducer }  from '#state/reducer';
-import LogonLayout  from '#pages/logon/logon';
-import Home         from '#pages/home/home';
-import NhlFantasy from '#pages/nhl-fantasy/nhl-fantasy';
-import PrivateRoute from '#components/route/private-route';
 
 export default function App() {
     return (
@@ -18,11 +18,3 @@ export default function App() {
         </StateProvider>
     );
 };
-
-// import './App.css';
-// import {ConnectedRouter} from "connected-react-router";
-// import {history} from "./store";
-// import Stats from "./Stats/Stats";
-//
-// import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-// import DateFnsUtils from '@date-io/date-fns';
