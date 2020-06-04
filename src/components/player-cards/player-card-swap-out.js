@@ -1,7 +1,7 @@
 import React from 'react';
 import './player-card.css'
 
-function PlayerCardSwapOut({ id, name, team, position, selected, onClick }) {
+function PlayerCardSwapOut({ id, name, team, selected, onClick }) {
     return(
         <div>
             <div className='uk-inline'>

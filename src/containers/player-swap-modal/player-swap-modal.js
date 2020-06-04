@@ -23,7 +23,7 @@ function PlayerSwapModal() {
                     <h2 className="uk-modal-title">Player Swap</h2>
                 </div>
 
-                <div className="uk-modal-body" >
+                <div className="uk-modal-body">
                     <p className='uk-text-muted'>Choose a player to swap out.</p>
                     <div className='uk-text-center' data-uk-grid={true}>
                         {swapOutOptions.map(player =>
@@ -32,7 +32,6 @@ function PlayerSwapModal() {
                                     id={player.id}
                                     name={player.name}
                                     team={player.team}
-                                    position={player.position}
                                     selected={swapOut.id === player.id}
                                     onClick={toggleSwapOutPlayer.bind(null, swapOut, player)}
                                 />}
