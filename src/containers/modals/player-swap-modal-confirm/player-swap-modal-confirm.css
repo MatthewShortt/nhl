@@ -1,0 +1,37 @@
+.fade-out {
+    position: relative;
+    animation-name: fadeOut;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+.slide-right-fade-out {
+    position: relative;
+    animation-name: fadeOut, slideRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+.slide-right-scale-up {
+    position: relative;
+    animation-name: slideRight, scaleUp;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes slideRight {
+    0% { left: 0; }
+    100% { left: 25%; }
+}
+
+@keyframes scaleUp {
+    100% { transform: scale(1.5); }
+}
