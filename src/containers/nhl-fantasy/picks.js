@@ -5,7 +5,7 @@ import { DEFENCE, EAST, EAST_PICKS, FORWARD, GOALIE, TEAMS, WEST, WEST_PICKS } f
 import { getPlayoffGoalieStats, getPlayoffSkaterStats }                        from '#domain/stats/playoff-skater/actions';
 import PlayerRow                                                               from '#components/player-row/player-row';
 import SelectionTableOption                                                    from '#components/selection-table-option/selection-table-option';
-import SelectionTable                                                          from '#containers/selection-table/selection-table';
+import SelectionTable                                                          from '#containers/tables/selection/selection-table';
 import './nhl-fantasy.css';
 
 function Picks() {
