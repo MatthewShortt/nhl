@@ -1,16 +1,13 @@
-const { PicksApi }                                                                                                                                                                                                             = require('./api');
+const { PicksApi } = require('./api');
+const { baseRestClient } = require('../base-rest-client');
 const { PICKS_GET_SUCCESS, PICKS_GET_ERROR, PICKS_UPDATE_SUCCESS, PICKS_UPDATE_ERROR, PICK_FILTERS_UPDATE, PICK_SWAP_OUT_PLAYER_ADD, PICK_SWAP_OUT_PLAYER_REMOVE, PICK_SWAP_UPDATE, PICK_SWAP_RESTORE, PICK_ADD, PICK_REMOVE } = require('./constants');
 
 export function getPicks(dispatch, token) {
-    PicksApi.getPicks(token)
-        .then(res => dispatch({ type: PICKS_GET_SUCCESS, data: res.data }))
-        .catch(error => dispatch({ type: PICKS_GET_ERROR, data: 'Error retrieving picks.' }));
+    baseRestClient(dispatch, PicksApi.getPicks.bind(null, token), PICKS_GET_SUCCESS, PICKS_GET_ERROR, 'Error retrieving picks.');
 }
 
 export function updatePicks(dispatch, token, { picks }) {
-    PicksApi.updatePicks(token, { picks })
-        .then(res => dispatch({ type: PICKS_UPDATE_SUCCESS }))
-        .catch(error => dispatch({ type: PICKS_UPDATE_ERROR, data: 'Error updating picks.' }));
+    baseRestClient(dispatch, PicksApi.updatePicks.bind(null, token, { picks }), PICKS_UPDATE_SUCCESS, PICKS_UPDATE_ERROR, 'Error updating picks.');
 }
 
 export function addPick(dispatch, { position, attributes }) {

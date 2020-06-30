@@ -1,5 +1,6 @@
 const uikit = require('uikit');
 const { persistentReducer } = require('#state/persistentReducer');
+const { USER_LOGOUT } = require('../users/constants');
 const { PICKS_GET_SUCCESS, PICKS_GET_ERROR, PICKS_UPDATE_SUCCESS, PICKS_UPDATE_ERROR, PICK_ADD, PICK_REMOVE, PICK_FILTERS_UPDATE, PICK_SWAP_UPDATE, PICK_SWAP_RESTORE, PICK_SWAP_OUT_PLAYER_ADD, PICK_SWAP_OUT_PLAYER_REMOVE, FORWARD, ACTIVE_FILTER, TEAMS, EAST } = require('./constants');
 
 /*
@@ -46,6 +47,8 @@ function picksReducer(state = picksInitialStats, action) {
             return { players: { ...state.players, [action.data.position]: { ...action.data.attributes } }, error: null };
         case PICK_REMOVE:
             return { players: { ...state.players, [action.data.position]: pickType }, error: null };
+        case USER_LOGOUT:
+            return picksInitialStats;
         default:
             return state;
     }
@@ -66,7 +69,9 @@ const pickFiltersInitialState = {
 function pickFiltersReducer(state = pickFiltersInitialState, action) {
     switch (action.type) {
         case PICK_FILTERS_UPDATE:
-            return { ...action.data }
+            return { ...action.data };
+        case USER_LOGOUT:
+            return pickFiltersInitialState;
         default:
             return state;
     }
@@ -92,12 +97,13 @@ const pickSwapInitialState = {
 function pickSwapReducer(state = pickSwapInitialState, action) {
     switch (action.type) {
         case PICK_SWAP_UPDATE:
-            return { ...state, ...action.data }
+            return { ...state, ...action.data };
         case PICK_SWAP_OUT_PLAYER_ADD:
-            return { ...state, ...action.data }
+            return { ...state, ...action.data };
         case PICK_SWAP_OUT_PLAYER_REMOVE:
-            return { ...state, swapOut: swapPickType }
+            return { ...state, swapOut: swapPickType };
         case PICK_SWAP_RESTORE:
+        case USER_LOGOUT:
             return pickSwapInitialState;
         default:
             return state;
@@ -108,5 +114,5 @@ function pickSwapReducer(state = pickSwapInitialState, action) {
 module.exports = {
     [PICKS_KEY]: [persistentReducer(picksReducer, PICKS_KEY), picksInitialStats],
     [PICK_FILTERS_KEY]: [persistentReducer(pickFiltersReducer, PICK_FILTERS_KEY), pickFiltersInitialState],
-    [PICK_SWAP_KEY]: [pickSwapReducer, pickSwapInitialState]
+    [PICK_SWAP_KEY]: [persistentReducer(pickSwapReducer, PICK_SWAP_KEY), pickSwapInitialState]
 };
