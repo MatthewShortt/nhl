@@ -32,6 +32,25 @@ function Picks() {
         <div>
             <h2>My Picks</h2>
 
+            {/*<div className='uk-grid-small uk-child-width-auto uk-margin' data-uk-grid*/}
+            {/*     data-uk-countdown='date: 2020-08-01T12:00:00-04:00'>*/}
+            {/*    <div>*/}
+            {/*        <span className='uk-countdown-number uk-countdown-days'/>*/}
+            {/*    </div>*/}
+            {/*    <div className='uk-countdown-separator'>:</div>*/}
+            {/*    <div>*/}
+            {/*        <span className='uk-countdown-number uk-countdown-hours'/>*/}
+            {/*    </div>*/}
+            {/*    <div className='uk-countdown-separator'>:</div>*/}
+            {/*    <div>*/}
+            {/*        <span className='uk-countdown-number uk-countdown-minutes'/>*/}
+            {/*    </div>*/}
+            {/*    <div className='uk-countdown-separator'>:</div>*/}
+            {/*    <div>*/}
+            {/*        <span className='uk-countdown-number uk-countdown-seconds'/>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+
             <h3 className='uk-heading-line'><span>East</span></h3>
             <PlayerRow players={players} conference={EAST_PICKS}/>
 

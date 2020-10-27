@@ -8,9 +8,9 @@ function NhlFantasy() {
     return (
         <StandardLayout>
             <ul data-uk-tab='connect: #fantasy-switcher'>
-                <li><a href=" https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md">Picks</a></li>
-                <li><a href=" https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md">Standings</a></li>
-                <li><a href=" https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md">Groups</a></li>
+                <li><a href="#picks">Picks</a></li>
+                <li><a href="#standings">Standings</a></li>
+                <li><a href="#groups">Groups</a></li>
             </ul>
 
             <ul id='fantasy-switcher' className="uk-switcher uk-margin">
