@@ -6,13 +6,13 @@ export const PicksApi = {
             Authorization: `Bearer ${token}`
         },
         params: {
-            year: '2020',
+            year: '2021',
             round: '1'
         }
     }),
 
     updatePicks: async (token, { picks }) => client.post('/fantasy/hockey/entry', {
-        year: '2020',
+        year: '2021',
         round: '1',
         picks
     }, {

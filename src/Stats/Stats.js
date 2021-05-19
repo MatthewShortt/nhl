@@ -16,7 +16,7 @@ export function Stats({skaters, filters, tableConfig, years, dates, searchType, 
 
     useEffect(
         () => {
-            getSkaters({'type': 'skaters', 'searchType': 'YEARS', 'start': '20192020', 'end': '20192020'});
+            getSkaters({'type': 'skaters', 'searchType': 'YEARS', 'start': '20202021', 'end': '20202021'});
         },
         [getSkaters]
     );
