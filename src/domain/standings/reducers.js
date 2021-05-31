@@ -21,7 +21,7 @@ function standingsReducer(state = standingsInitialState, action) {
     }
 }
 
-module.exports = {
+export default {
     [STANDINGS_KEY]: [persistentReducer(standingsReducer, STANDINGS_KEY), standingsInitialState]
 }
 

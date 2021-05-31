@@ -26,6 +26,6 @@ function statsPlayoffPlayerReducer(state = playoffStatsInitialState, action) {
     }
 }
 
-module.exports = {
+export default {
     [PLAYOFF_STATS_KEY]: [persistentReducer(statsPlayoffPlayerReducer, PLAYOFF_STATS_KEY), playoffStatsInitialState]
 }

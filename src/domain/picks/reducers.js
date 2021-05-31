@@ -134,7 +134,7 @@ function pickSwapReducer(state = pickSwapInitialState, action) {
 }
 
 
-module.exports = {
+export default {
     [PICKS_KEY]: [persistentReducer(picksReducer, PICKS_KEY), picksInitialStats],
     [PICK_FILTERS_KEY]: [persistentReducer(pickFiltersReducer, PICK_FILTERS_KEY), pickFiltersInitialState],
     [PICK_SWAP_KEY]: [persistentReducer(pickSwapReducer, PICK_SWAP_KEY), pickSwapInitialState]

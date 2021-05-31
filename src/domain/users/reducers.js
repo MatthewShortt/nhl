@@ -28,6 +28,6 @@ function userReducer(state = userInitialState, action) {
     }
 }
 
-module.exports = {
+export default {
     [USER_KEY]: [persistentReducer(userReducer, USER_KEY), userInitialState]
 };
