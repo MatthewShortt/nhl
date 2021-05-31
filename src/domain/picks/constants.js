@@ -42,6 +42,9 @@ export const GOALIE  = 'G';
  */
 export const EAST = 'EAST';
 export const WEST = 'WEST';
+// extras for 4 divisions
+export const NORTH = 'NORTH';
+export const CENTRAL = 'CENTRAL';
 
 /*
  * Picks Structure
@@ -52,19 +55,31 @@ export const PICK_KEYS  = {
     [`${EAST}_${GOALIE}`]: ['eg'],
     [`${WEST}_${FORWARD}`]: ['wf1', 'wf2', 'wf3'],
     [`${WEST}_${DEFENCE}`]: ['wd1', 'wd2'],
-    [`${WEST}_${GOALIE}`]: ['wg']
+    [`${WEST}_${GOALIE}`]: ['wg'],
+    [`${NORTH}_${FORWARD}`]: ['nf1', 'nf2', 'nf3'],
+    [`${NORTH}_${DEFENCE}`]: ['nd1', 'nd2'],
+    [`${NORTH}_${GOALIE}`]: ['ng'],
+    [`${CENTRAL}_${FORWARD}`]: ['cf1', 'cf2', 'cf3'],
+    [`${CENTRAL}_${DEFENCE}`]: ['cd1', 'cd2'],
+    [`${CENTRAL}_${GOALIE}`]: ['cg']
 };
 export const EAST_PICKS = [...PICK_KEYS[`${EAST}_${FORWARD}`], ...PICK_KEYS[`${EAST}_${DEFENCE}`], ...PICK_KEYS[`${EAST}_${GOALIE}`]];
 export const WEST_PICKS = [...PICK_KEYS[`${WEST}_${FORWARD}`], ...PICK_KEYS[`${WEST}_${DEFENCE}`], ...PICK_KEYS[`${WEST}_${GOALIE}`]];
-export const PICKS      = [...EAST_PICKS, ...WEST_PICKS];
+// extras for 4 divisions
+export const NORTH_PICKS = [...PICK_KEYS[`${NORTH}_${FORWARD}`], ...PICK_KEYS[`${NORTH}_${DEFENCE}`], ...PICK_KEYS[`${NORTH}_${GOALIE}`]];
+export const CENTRAL_PICKS = [...PICK_KEYS[`${CENTRAL}_${FORWARD}`], ...PICK_KEYS[`${CENTRAL}_${DEFENCE}`], ...PICK_KEYS[`${CENTRAL}_${GOALIE}`]];
+export const PICKS      = [...EAST_PICKS, ...WEST_PICKS, ...NORTH_PICKS, ...CENTRAL_PICKS];
 
 /*
  * Pick Team Filter
  */
 export const TEAMS = {
-    [EAST]: ['BOS', 'TBL', 'TOR', 'FLA', 'MTL', 'BUF', 'OTT', 'DET', 'WSH', 'PHI', 'PIT', 'CAR', 'CLB', 'NYI', 'NYR', 'NJD'],
-    [WEST]: ['STL', 'COL', 'DAL', 'WPG', 'NSH', 'MIN', 'CHI', 'VGK', 'EDM', 'CGY', 'VAN', 'ARI', 'ANA', 'LAK', 'SJS']
+    [EAST]: ['BOS', 'NYI'],
+    [WEST]: ['COL', 'VGK'],
+    [NORTH]: ['TOR', 'WPG', 'MTL'],
+    [CENTRAL]: ['CAR', 'TBL'],
 };
+
 
 /*
  * Pick Active Filter
@@ -75,5 +90,11 @@ export const ACTIVE_FILTER = {
     [`${TEAMS[EAST]}_${GOALIE}`]: `${EAST}_${GOALIE}`,
     [`${TEAMS[WEST]}_${FORWARD}`]: `${WEST}_${FORWARD}`,
     [`${TEAMS[WEST]}_${DEFENCE}`]: `${WEST}_${DEFENCE}`,
-    [`${TEAMS[WEST]}_${GOALIE}`]: `${WEST}_${GOALIE}`
+    [`${TEAMS[WEST]}_${GOALIE}`]: `${WEST}_${GOALIE}`,
+    [`${TEAMS[NORTH]}_${FORWARD}`]: `${NORTH}_${FORWARD}`,
+    [`${TEAMS[NORTH]}_${DEFENCE}`]: `${NORTH}_${DEFENCE}`,
+    [`${TEAMS[NORTH]}_${GOALIE}`]: `${NORTH}_${GOALIE}`,
+    [`${TEAMS[CENTRAL]}_${FORWARD}`]: `${CENTRAL}_${FORWARD}`,
+    [`${TEAMS[CENTRAL]}_${DEFENCE}`]: `${CENTRAL}_${DEFENCE}`,
+    [`${TEAMS[CENTRAL]}_${GOALIE}`]: `${CENTRAL}_${GOALIE}`
 };

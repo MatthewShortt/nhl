@@ -9,7 +9,7 @@ const { PICKS_GET_SUCCESS, PICKS_GET_ERROR, PICKS_UPDATE_SUCCESS, PICKS_UPDATE_E
 const PICKS_KEY = 'picks';
 
 const pickType = {
-    id: '',
+    id: null,
     name: '',
     team: ''
 };
@@ -27,15 +27,38 @@ const picksInitialStats = {
         wf3: pickType,
         wd1: pickType,
         wd2: pickType,
-        wg: pickType
+        wg: pickType,
+        nf1: pickType,
+        nf2: pickType,
+        nf3: pickType,
+        nd1: pickType,
+        nd2: pickType,
+        ng: pickType,
+        cf1: pickType,
+        cf2: pickType,
+        cf3: pickType,
+        cd1: pickType,
+        cd2: pickType,
+        cg: pickType
     },
     error: null
 };
 
+/**
+ * Cleans data by replacing null id with pickType initial state
+ */
+const cleanData = (data) => {
+    return Object.entries(data)
+        .reduce((obj, [key, value]) => ({
+            ...obj,
+            [key]: value.id ? value : pickType,
+        }), {});
+}
+
 function picksReducer(state = picksInitialStats, action) {
     switch (action.type) {
         case PICKS_GET_SUCCESS:
-            return action.data ? { players: action.data, error: null } : { ...picksInitialStats };
+            return action.data ? { players: cleanData(action.data), error: null } : { ...picksInitialStats };
         case PICKS_UPDATE_SUCCESS:
             uikit.notification({message: 'Picks Updated.', pos: 'top-right', status: 'success', timeout: 1500});
             return state;

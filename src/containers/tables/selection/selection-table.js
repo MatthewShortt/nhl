@@ -73,7 +73,7 @@ function SelectionTable({ stats, config, picks, activeFilter }) {
      * @returns {array} - available pick slots for the given active filter
      */
     function getAvailablePickSlots(activeFilter, picks) {
-        return PICK_KEYS[activeFilter].filter(key => picks[key].id === '');
+        return PICK_KEYS[activeFilter].filter(key => picks[key].id === null);
     }
 
     /**

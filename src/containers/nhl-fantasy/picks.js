@@ -1,11 +1,25 @@
 import React, { useEffect }                                                    from 'react';
 import { useStateValue }                                                       from '#state';
 import { getPicks, updatePicks, updatePickFilters }                            from '#domain/picks/actions';
-import { DEFENCE, EAST, EAST_PICKS, FORWARD, GOALIE, TEAMS, WEST, WEST_PICKS } from '#domain/picks/constants';
+import {
+    CENTRAL,
+    CENTRAL_PICKS,
+    DEFENCE,
+    EAST,
+    EAST_PICKS,
+    FORWARD,
+    GOALIE,
+    // NORTH,
+    // NORTH_PICKS,
+    TEAMS,
+    WEST,
+    WEST_PICKS
+} from '#domain/picks/constants';
 import { getPlayoffGoalieStats, getPlayoffSkaterStats }                        from '#domain/stats/playoff-skater/actions';
 import PlayerRow                                                               from '#components/player-row/player-row';
 import SelectionTableOption                                                    from '#components/selection-table-option/selection-table-option';
-import SelectionTable                                                          from '#containers/tables/selection/selection-table';
+import SelectionTable from '#containers/tables/selection/selection-table';
+import Deadline       from './deadline';
 import './nhl-fantasy.css';
 
 function Picks() {
@@ -32,30 +46,19 @@ function Picks() {
         <div>
             <h2>My Picks</h2>
 
-            {/*<div className='uk-grid-small uk-child-width-auto uk-margin' data-uk-grid*/}
-            {/*     data-uk-countdown='date: 2020-08-01T12:00:00-04:00'>*/}
-            {/*    <div>*/}
-            {/*        <span className='uk-countdown-number uk-countdown-days'/>*/}
-            {/*    </div>*/}
-            {/*    <div className='uk-countdown-separator'>:</div>*/}
-            {/*    <div>*/}
-            {/*        <span className='uk-countdown-number uk-countdown-hours'/>*/}
-            {/*    </div>*/}
-            {/*    <div className='uk-countdown-separator'>:</div>*/}
-            {/*    <div>*/}
-            {/*        <span className='uk-countdown-number uk-countdown-minutes'/>*/}
-            {/*    </div>*/}
-            {/*    <div className='uk-countdown-separator'>:</div>*/}
-            {/*    <div>*/}
-            {/*        <span className='uk-countdown-number uk-countdown-seconds'/>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            <Deadline/>
 
-            <h3 className='uk-heading-line'><span>East</span></h3>
+            <h3 className='uk-heading-line'><span>East - Deadline 7:30 PM</span></h3>
             <PlayerRow players={players} conference={EAST_PICKS}/>
 
-            <h3 className='uk-heading-line'><span>West</span></h3>
+            <h3 className='uk-heading-line'><span>West - Deadline 7:30 PM</span></h3>
             <PlayerRow players={players} conference={WEST_PICKS}/>
+
+            <h3 className='uk-heading-line'><span>Central - Deadline 7:30 PM</span></h3>
+            <PlayerRow players={players} conference={CENTRAL_PICKS}/>
+
+            <h3 className='uk-heading-line'><span>North - Deadline TBD</span></h3>
+            {/*<PlayerRow players={players} conference={NORTH_PICKS}/>*/}
 
             <form onSubmit={dispatchUpdatePicks}>
                 <button type='submit' className='uk-button uk-button-primary uk-align-center uk-margin-medium-top uk-margin-medium-bottom uk-width-3-4 uk-width-1-2@s'>Submit Picks</button>
@@ -73,6 +76,12 @@ function Picks() {
                             <SelectionTableOption active={active} player={FORWARD} teams={TEAMS[WEST]} text='West Forwards'/>
                             <SelectionTableOption active={active} player={DEFENCE} teams={TEAMS[WEST]} text='West Defence' />
                             <SelectionTableOption active={active} player={GOALIE}  teams={TEAMS[WEST]} text='West Goalies' />
+                            <SelectionTableOption active={active} player={FORWARD} teams={TEAMS[CENTRAL]} text='Central Forwards'/>
+                            <SelectionTableOption active={active} player={DEFENCE} teams={TEAMS[CENTRAL]} text='Central Defence' />
+                            <SelectionTableOption active={active} player={GOALIE}  teams={TEAMS[CENTRAL]} text='Central Goalies' />
+                            {/*<SelectionTableOption active={active} player={FORWARD} teams={TEAMS[NORTH]} text='North Forwards'/>*/}
+                            {/*<SelectionTableOption active={active} player={DEFENCE} teams={TEAMS[NORTH]} text='North Defence' />*/}
+                            {/*<SelectionTableOption active={active} player={GOALIE}  teams={TEAMS[NORTH]} text='North Goalies' />*/}
                         </select>
                     </div>
                 </fieldset>
