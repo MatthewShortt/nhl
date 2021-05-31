@@ -5,6 +5,5 @@ export const client = axios.create({
 });
 
 client.interceptors.request.use(config => {
-    console.log('MY_CONFIG', config);
     return config;
 });
