@@ -1,5 +1,5 @@
 import React                              from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import PrivateRoute                       from '#components/route/private-route';
 import IsOnline                           from '#components/is-online/is-online';
 import LogonLayout                        from '#pages/logon/logon';
