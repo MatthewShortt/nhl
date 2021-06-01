@@ -9,7 +9,7 @@ function Standings() {
     const [{ user: { token }, standings: { data } }, dispatch] = useStateValue();
 
     useEffect(() => {
-        getStandings(dispatch, token);
+        getStandings(dispatch, token, ['1']);
     }, [dispatch, token]);
 
     return (

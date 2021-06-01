@@ -76,7 +76,7 @@ export const PICKS      = [...EAST_PICKS, ...WEST_PICKS, ...NORTH_PICKS, ...CENT
 export const TEAMS = {
     [EAST]: ['BOS', 'NYI'],
     [WEST]: ['COL', 'VGK'],
-    [NORTH]: ['TOR', 'WPG', 'MTL'],
+    [NORTH]: ['WPG', 'MTL'],
     [CENTRAL]: ['CAR', 'TBL'],
 };
 

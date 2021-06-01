@@ -4,7 +4,7 @@ const Deadline = () => {
     return (
         <>
             <div className='uk-grid-small uk-child-width-auto uk-margin' data-uk-grid
-                 data-uk-countdown='date: 2021-05-31T19:30:00-04:00'>
+                 data-uk-countdown='date: 2021-06-01T19:30:00-04:00'>
                 <span>Deadline</span>
                 <div>
                     <span className='uk-countdown-number uk-countdown-days uk-text-small'/>
