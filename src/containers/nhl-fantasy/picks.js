@@ -61,7 +61,7 @@ function Picks() {
             <PlayerRow players={players} conference={NORTH_PICKS}/>
 
             <form onSubmit={dispatchUpdatePicks}>
-                <button type='submit' className='uk-button uk-button-primary uk-align-center uk-margin-medium-top uk-margin-medium-bottom uk-width-3-4 uk-width-1-2@s'>Submit Picks</button>
+                <button type='submit' className='uk-button uk-button-primary uk-align-center uk-margin-medium-top uk-margin-medium-bottom uk-width-3-4 uk-width-1-2@s' disabled>Submit Picks</button>
             </form>
 
             <h3 id='selection-table' className='uk-heading-line'><span>Selection Table</span></h3>
