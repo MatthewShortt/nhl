@@ -1,20 +1,29 @@
 import React, { createRef, useCallback, useEffect, useState } from 'react';
 import { useStateValue }                                      from '#state';
-import { getStandings }                          from '#domain/standings/actions';
+import { getStandings }                                       from '#domain/standings/actions';
+import { useHistory }                                         from 'react-router';
 
 function StandingsTable() {
 
+    const history = useHistory();
     const tableDivRef = createRef();
 
-    const [{ user: { token }, standings: { data } }, dispatch] = useStateValue();
+    const [{ user, standings: { data } }, dispatch] = useStateValue();
 
     const [rounds, setRounds] = useState(['1', '2']);
 
     useEffect(() => {
-        getStandings(dispatch, token, rounds);
-    }, [dispatch, token, rounds]);
+        getStandings(dispatch, user.token, rounds);
+    }, [dispatch, user, rounds]);
 
     const switchRounds = useCallback((event) => setRounds(event.target.value.split(',')), []);
+    const goToCompare = useCallback((event, username) => {
+        event.preventDefault();
+        history.push({
+            pathname: './my-picks',
+            state: { username },
+        })
+    }, [history]);
 
     return (
         <div className='uk-inline uk-width-1-1'>
@@ -22,8 +31,8 @@ function StandingsTable() {
             {/*    <span data-uk-search-icon={true}/>*/}
             {/*    <input className='uk-search-input' type='search' placeholder='Search...' onChange={searchPlayers}/>*/}
             {/*</form>*/}
-            <form className='uk-width-1-1' onChange={switchRounds}>
-                <select className="uk-select">
+            <form className='uk-width-1-1'>
+                <select className="uk-select" onChange={switchRounds}>
                     <option value='1,2'>Overall</option>
                     <option value='1'>Round 1</option>
                     <option value='2'>Round 2</option>
@@ -35,6 +44,7 @@ function StandingsTable() {
                         <tr>
                             <th className='uk-table-shrink'>Pos.</th>
                             <th className='uk-table-expand uk-text-left'>User</th>
+                            <th/>
                             <th className='uk-table-shrink'>Total</th>
                         </tr>
                     </thead>
@@ -42,7 +52,12 @@ function StandingsTable() {
                     {data.map(({ user: { username }, total }, i) =>
                         <tr key={`standings_row_${username}`}>
                             <td>{i+1}</td>
-                            <td className='uk-text-left'>{username}</td>
+                            <td className={`uk-text-left ${username === user.username ? 'uk-text-success': ''}`}>{username}</td>
+                            <td>
+                                <a href="#compare-picks" onClick={(event) => goToCompare(event, username)}>
+                                    <span data-uk-icon="file-text"/>
+                                </a>
+                            </td>
                             <td>{total}</td>
                         </tr>
                     )}

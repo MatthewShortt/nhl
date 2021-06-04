@@ -1,11 +1,25 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useStateValue }            from '#state';
 import PlayerColumn                 from '#components/player-column/player-column';
 import { useUserTotals }            from './hooks';
+import { useLocation }              from 'react-router-dom';
 
-const PickCompare = ({ secondaryUsername }) => {
-    const [round, setRound] = useState('2');
+const DEFAULT_ROUND = '2';
+
+const PickCompare = () => {
+
+    const location = useLocation();
     const [{ user: { token, username } }] = useStateValue();
+
+    const [round, setRound] = useState(DEFAULT_ROUND);
+    const [secondaryUsername, setSecondaryUsername] = useState(null);
+
+    useEffect(() => {
+        const second = location?.state?.username;
+        const secondUsername = second !== username ? second : null;
+        setSecondaryUsername(secondUsername);
+    }, [location, username]);
+
 
     const [primaryUser] = useUserTotals(token, username, round);
     const [secondaryUser] = useUserTotals(token, secondaryUsername, round);
@@ -15,8 +29,8 @@ const PickCompare = ({ secondaryUsername }) => {
 
     return (
         <>
-            <form className='uk-width-1-1' onChange={e => setRound(e.target.value)}>
-                <select className="uk-select">
+            <form className='uk-width-1-1'>
+                <select className="uk-select" onChange={e => setRound(e.target.value)}>
                     <option value='2'>Round 2</option>
                     <option value='1'>Round 1</option>
                 </select>
