@@ -1,27 +1,24 @@
-import React          from 'react';
-import StandardLayout from '#components/layout/standard-layout';
-import Picks          from '#containers/nhl-fantasy/picks';
-import Standings      from '#containers/nhl-fantasy/standings';
+import React                       from 'react';
+import Home                        from '#containers/nhl-fantasy/home';
+import Nav                         from '#containers/nhl-fantasy/nav';
+import Picks                       from '#containers/nhl-fantasy/picks';
+import Standings                   from '#containers/nhl-fantasy/standings';
+import PickCompare                 from '#containers/nhl-fantasy/pick-compare';
+import { Redirect, Route, Switch } from 'react-router';
 
-function NhlFantasy() {
-
+function NhlFantasy({ match: { path } }) {
+    const PickPage = process.env.REACT_APP_PICKS_OPEN === 'true'
+        ? Picks
+        : () => <>Pick selection will open after the second round is completed.</>;
     return (
-        <StandardLayout>
-            <ul data-uk-tab='connect: #fantasy-switcher'>
-                <li><a href="#picks">Picks</a></li>
-                <li><a href="#standings">Standings</a></li>
-                {/*<li><a href="#groups">Groups</a></li>*/}
-            </ul>
-
-            <ul id='fantasy-switcher' className="uk-switcher uk-margin">
-                <li><Picks/></li>
-                <li><Standings/></li>
-                {/*<li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla*/}
-                {/*    pariatur, sed do eiusmod.*/}
-                {/*</li>*/}
-            </ul>
-        </StandardLayout>
-    );
+        <Switch>
+            <Route exact path={path} component={Home}/>
+            <Route exact path={`${path}/standings`}>{Nav(Standings)}</Route>
+            <Route exact path={`${path}/my-picks`}>{Nav(PickCompare)}</Route>
+            <Route exact path={`${path}/make-picks`}>{Nav(PickPage)}</Route>
+            <Redirect to={path}/>
+        </Switch>
+    )
 }
 
 export default NhlFantasy;

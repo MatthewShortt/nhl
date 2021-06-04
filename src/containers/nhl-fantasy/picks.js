@@ -44,8 +44,6 @@ function Picks() {
 
     return (
         <div>
-            <h2>My Picks</h2>
-
             <Deadline/>
 
             <h3 className='uk-heading-line'><span>East</span></h3>

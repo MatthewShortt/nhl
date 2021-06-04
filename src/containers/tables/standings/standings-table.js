@@ -22,7 +22,7 @@ function StandingsTable() {
             {/*    <span data-uk-search-icon={true}/>*/}
             {/*    <input className='uk-search-input' type='search' placeholder='Search...' onChange={searchPlayers}/>*/}
             {/*</form>*/}
-            <form className='uk-search uk-search-default uk-width-1-1' onChange={switchRounds}>
+            <form className='uk-width-1-1' onChange={switchRounds}>
                 <select className="uk-select">
                     <option value='1,2'>Overall</option>
                     <option value='1'>Round 1</option>

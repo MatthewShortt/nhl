@@ -1,7 +1,7 @@
 import React          from 'react';
 import { useHistory } from 'react-router-dom';
 
-function MediaCard({ title, linkTo, img, alt }) {
+function MediaCard({ title, linkTo, img, alt, icon }) {
 
     const history = useHistory();
 
@@ -12,7 +12,10 @@ function MediaCard({ title, linkTo, img, alt }) {
                     <h3 className="uk-card-title">{title}</h3>
                 </div>
                 <div className="uk-card-media-bottom">
-                    <img src={img} alt={alt} className='card-image uk-margin-medium-bottom'/>
+                    {img
+                        ? <img src={img} alt={alt} className='card-image uk-margin-medium-bottom'/>
+                        : <span data-uk-icon={`icon: ${icon}; ratio: 2`} className='card-image uk-margin-medium-bottom'/>
+                    }
                 </div>
             </div>
         </div>
