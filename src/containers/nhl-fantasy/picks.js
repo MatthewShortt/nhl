@@ -13,7 +13,8 @@ import {
     // NORTH_PICKS,
     TEAMS,
     WEST,
-    WEST_PICKS
+    WEST_PICKS,
+    ACTIVE_FILTER
 } from '#domain/picks/constants';
 import { getPlayoffGoalieStats, getPlayoffSkaterStats }                        from '#domain/stats/playoff-skater/actions';
 import PlayerRow                                                               from '#components/player-row/player-row';
@@ -36,6 +37,14 @@ function Picks() {
         getPlayoffSkaterStats(dispatch, token);
         getPlayoffGoalieStats(dispatch, token);
     }, [dispatch, token]);
+
+    useEffect(() => {
+        updatePickFilters(dispatch,{
+            position: FORWARD,
+            teams: TEAMS[EAST],
+            active: ACTIVE_FILTER[`${TEAMS[EAST]}_${FORWARD}`]
+        })
+    }, []); // eslint-disable-line
 
     const skaterTableConfig = {
         headers: ['Name', 'Team', 'Total'],
