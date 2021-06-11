@@ -40,6 +40,7 @@ function SelectionTable({ stats, config, picks, activeFilter }) {
                             </td>
                             {config.keys.map((key, j) =>
                                 <td key={`player_cell_${i}-${j}`}>
+                                    {key === 'team' ? <img src={`https://assets.nhle.com/logos/nhl/svg/${player[key]}_light.svg`} height='20' width='20' alt='logo'/> : null}
                                     {player[key]}
                                 </td>
                             )}

@@ -2,15 +2,15 @@ import React, { useEffect }                                                    f
 import { useStateValue }                                                       from '#state';
 import { getPicks, updatePicks, updatePickFilters }                            from '#domain/picks/actions';
 import {
-    CENTRAL,
-    CENTRAL_PICKS,
+    // CENTRAL,
+    // CENTRAL_PICKS,
     DEFENCE,
     EAST,
     EAST_PICKS,
     FORWARD,
     GOALIE,
-    NORTH,
-    NORTH_PICKS,
+    // NORTH,
+    // NORTH_PICKS,
     TEAMS,
     WEST,
     WEST_PICKS
@@ -44,6 +44,7 @@ function Picks() {
 
     return (
         <div>
+            <p className='uk-text-warning'>Note: These picks will be for both the Stanley Cup semi finals & finals!</p>
             <Deadline/>
 
             <h3 className='uk-heading-line'><span>East</span></h3>
@@ -52,14 +53,14 @@ function Picks() {
             <h3 className='uk-heading-line'><span>West</span></h3>
             <PlayerRow players={players} conference={WEST_PICKS}/>
 
-            <h3 className='uk-heading-line'><span>Central</span></h3>
-            <PlayerRow players={players} conference={CENTRAL_PICKS}/>
+            {/*<h3 className='uk-heading-line'><span>Central</span></h3>*/}
+            {/*<PlayerRow players={players} conference={CENTRAL_PICKS}/>*/}
 
-            <h3 className='uk-heading-line'><span>North</span></h3>
-            <PlayerRow players={players} conference={NORTH_PICKS}/>
+            {/*<h3 className='uk-heading-line'><span>North</span></h3>*/}
+            {/*<PlayerRow players={players} conference={NORTH_PICKS}/>*/}
 
             <form onSubmit={dispatchUpdatePicks}>
-                <button type='submit' className='uk-button uk-button-primary uk-align-center uk-margin-medium-top uk-margin-medium-bottom uk-width-3-4 uk-width-1-2@s' disabled>Submit Picks</button>
+                <button type='submit' className='uk-button uk-button-primary uk-align-center uk-margin-medium-top uk-margin-medium-bottom uk-width-3-4 uk-width-1-2@s'>Submit Picks</button>
             </form>
 
             <h3 id='selection-table' className='uk-heading-line'><span>Selection Table</span></h3>
@@ -74,12 +75,12 @@ function Picks() {
                             <SelectionTableOption active={active} player={FORWARD} teams={TEAMS[WEST]} text='West Forwards'/>
                             <SelectionTableOption active={active} player={DEFENCE} teams={TEAMS[WEST]} text='West Defence' />
                             <SelectionTableOption active={active} player={GOALIE}  teams={TEAMS[WEST]} text='West Goalies' />
-                            <SelectionTableOption active={active} player={FORWARD} teams={TEAMS[CENTRAL]} text='Central Forwards'/>
-                            <SelectionTableOption active={active} player={DEFENCE} teams={TEAMS[CENTRAL]} text='Central Defence' />
-                            <SelectionTableOption active={active} player={GOALIE}  teams={TEAMS[CENTRAL]} text='Central Goalies' />
-                            <SelectionTableOption active={active} player={FORWARD} teams={TEAMS[NORTH]} text='North Forwards'/>
-                            <SelectionTableOption active={active} player={DEFENCE} teams={TEAMS[NORTH]} text='North Defence' />
-                            <SelectionTableOption active={active} player={GOALIE}  teams={TEAMS[NORTH]} text='North Goalies' />
+                            {/*<SelectionTableOption active={active} player={FORWARD} teams={TEAMS[CENTRAL]} text='Central Forwards'/>*/}
+                            {/*<SelectionTableOption active={active} player={DEFENCE} teams={TEAMS[CENTRAL]} text='Central Defence' />*/}
+                            {/*<SelectionTableOption active={active} player={GOALIE}  teams={TEAMS[CENTRAL]} text='Central Goalies' />*/}
+                            {/*<SelectionTableOption active={active} player={FORWARD} teams={TEAMS[NORTH]} text='North Forwards'/>*/}
+                            {/*<SelectionTableOption active={active} player={DEFENCE} teams={TEAMS[NORTH]} text='North Defence' />*/}
+                            {/*<SelectionTableOption active={active} player={GOALIE}  teams={TEAMS[NORTH]} text='North Goalies' />*/}
                         </select>
                     </div>
                 </fieldset>

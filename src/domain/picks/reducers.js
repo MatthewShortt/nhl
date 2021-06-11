@@ -60,11 +60,11 @@ function picksReducer(state = picksInitialStats, action) {
         case PICKS_GET_SUCCESS:
             return action.data ? { players: cleanData(action.data), error: null } : { ...picksInitialStats };
         case PICKS_UPDATE_SUCCESS:
-            uikit.notification({message: 'Picks Updated.', pos: 'top-right', status: 'success', timeout: 1500});
+            uikit.notification({message: 'Picks Updated.', pos: 'top-center', status: 'success', timeout: 1500});
             return state;
         case PICKS_GET_ERROR:
         case PICKS_UPDATE_ERROR:
-            uikit.notification({message: action.data, pos: 'top-right', status: 'danger', timeout: 1500});
+            uikit.notification({message: action.data, pos: 'top-center', status: 'danger', timeout: 1500});
             return { ...state, error: action.data};
         case PICK_ADD:
             return { players: { ...state.players, [action.data.position]: { ...action.data.attributes } }, error: null };

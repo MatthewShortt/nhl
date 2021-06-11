@@ -7,13 +7,13 @@ export const PicksApi = {
         },
         params: {
             year: '2021',
-            round: '2'
+            round: '3'
         }
     }),
 
     updatePicks: async (token, { picks }) => client.post('/fantasy/hockey/entry', {
         year: '2021',
-        round: '2',
+        round: '3',
         picks
     }, {
         headers: {
