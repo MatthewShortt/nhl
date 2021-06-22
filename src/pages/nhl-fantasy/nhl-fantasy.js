@@ -9,7 +9,7 @@ import { Redirect, Route, Switch } from 'react-router';
 function NhlFantasy({ match: { path } }) {
     const PickPage = process.env.REACT_APP_PICKS_OPEN === 'true'
         ? Picks
-        : () => <>Pick selection will open after the second round is completed.</>;
+        : () => <>Pick selection is now closed for round 3.</>;
     return (
         <Switch>
             <Route exact path={path} component={Home}/>

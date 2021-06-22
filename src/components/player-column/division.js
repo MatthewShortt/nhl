@@ -9,8 +9,8 @@ const Division = ({ division, players, icon }) => {
                 {division}
             </button>
             <div id={division}>
-                {players.map(player => (
-                    <div key={player.id}>
+                {players.map((player, i) => (
+                    <div key={`${player.id}-${i}`}>
                         <PlayerCardSummary {...player} />
                     </div>
                 ))}

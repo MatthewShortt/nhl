@@ -10,7 +10,7 @@ function StandingsTable() {
 
     const [{ user, standings: { data } }, dispatch] = useStateValue();
 
-    const [rounds, setRounds] = useState(['1', '2']);
+    const [rounds, setRounds] = useState(['1', '2', '3']);
 
     useEffect(() => {
         getStandings(dispatch, user.token, rounds);
@@ -33,9 +33,10 @@ function StandingsTable() {
             {/*</form>*/}
             <form className='uk-width-1-1'>
                 <select className="uk-select" onChange={switchRounds}>
-                    <option value='1,2'>Overall</option>
+                    <option value='1,2,3'>Overall</option>
                     <option value='1'>Round 1</option>
                     <option value='2'>Round 2</option>
+                    <option value='3'>Round 3</option>
                 </select>
             </form>
             <div ref={tableDivRef} className='uk-overflow-auto uk-height-large uk-margin-medium-top uk-box-shadow-large'>

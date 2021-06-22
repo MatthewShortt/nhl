@@ -6,15 +6,15 @@ const filterPlayers = (data, filter) => Object.entries(data)
     .filter(([key]) => key.charAt(0) === filter)
     .map(([, value]) => value);
 
-const PlayerColumn = ({ data = {} }) => {
+const PlayerColumn = ({ data = {}, round }) => {
     const icons = useIcon();
 
     const divisions = useMemo(() => [
         { division: EAST, players: filterPlayers(data, 'e'), show: true },
         { division: WEST, players: filterPlayers(data, 'w'), show: true },
-        { division: CENTRAL, players: filterPlayers(data, 'c'), show: true },
-        { division: NORTH, players: filterPlayers(data, 'n'), show: true }
-    ], [data])
+        { division: CENTRAL, players: filterPlayers(data, 'c'), show: round !== '3' },
+        { division: NORTH, players: filterPlayers(data, 'n'), show: round !== '3' }
+    ], [data, round])
 
     return (
         <>

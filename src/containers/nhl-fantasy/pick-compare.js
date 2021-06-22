@@ -4,7 +4,7 @@ import PlayerColumn                 from '#components/player-column/player-colum
 import { useUserTotals }            from './hooks';
 import { useLocation }              from 'react-router-dom';
 
-const DEFAULT_ROUND = '2';
+const DEFAULT_ROUND = '3';
 
 const PickCompare = () => {
 
@@ -31,6 +31,7 @@ const PickCompare = () => {
         <>
             <form className='uk-width-1-1'>
                 <select className="uk-select" onChange={e => setRound(e.target.value)}>
+                    <option value='3'>Round 3</option>
                     <option value='2'>Round 2</option>
                     <option value='1'>Round 1</option>
                 </select>
@@ -39,7 +40,7 @@ const PickCompare = () => {
                 {usersTotals.map(({ data }, i) => (
                     <div key={`player_column_${i}`} className='uk-padding-small'>
                         <h5 className='uk-heading-divider'>{userNames[i]}</h5>
-                        <PlayerColumn data={data}/>
+                        <PlayerColumn data={data} round={round}/>
                     </div>
                 ))}
             </div>
